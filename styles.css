@@ -1,0 +1,143 @@
+*{ 
+    --_bgdark: #111827;
+    --_bgdarktext: lightgray;
+    --_bglight: #f5f5f5;
+    box-sizing: border-box;
+  
+  }
+html.dark {
+    background-color: var(--_bgdark);
+    color: var(--_bgdarktext);
+}
+  
+.dark .nav-links a {
+    color: var(--_bgdarktext);
+}
+  
+html {
+      background-color: var(--_bglight);
+      font-family: sans-serif;
+}
+    
+ body {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1300px;
+      padding: 1rem;
+      line-height: 1.5;
+  
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2em;
+    position: relative;
+}
+
+.nav-links {
+    width: 100%;
+    top: 5rem;
+    left: 48px;
+    display: none;
+    margin: 0;
+    text-decoration: none;
+    /* position: absolute; */
+    /* right: -100%; */
+    /* transition: right 0.3s ease-out; */
+}
+
+.nav-links a {
+    /* display: block; */
+    text-align: right;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: inherit;
+}
+.nav-links a:hover,
+.nav-links a:focus {
+  color: var(--_bgdark);
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+.hamburger {
+    padding-right: 20px;
+    cursor: pointer;
+}
+  
+.hamburger .line {
+    display: block;
+    width: 40px;
+    height: 2px;
+    margin-bottom: 10px;
+    background-color: var(--_bgdark);
+}
+  .dark .line {
+   background-color: var(--_bgdarktext);
+}
+.expanded {
+    display: unset;
+}
+
+@media screen and (min-width: 636px) {
+
+    .nav-links {
+      display: block;
+      width: auto;
+      background: none;
+    }
+  
+    .nav-links a {
+      display: inline-block;
+      padding: 15px 20px;
+    }
+
+    .hamburger {
+      display: none;
+    }
+  
+}
+@media (max-width: 768px) {
+    body {
+      max-width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+#themeToggle {
+    border: 0;
+    background: none;
+  }
+  #themeToggle:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+
+  .sun {
+    fill: black;
+  }
+  .moon {
+    fill: transparent;
+  }
+
+  .dark .sun {
+    fill: transparent;
+  }
+  .dark .moon {
+    fill: white;
+  }
