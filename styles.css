@@ -1,3 +1,5 @@
+/* _-----------------------------------------boiler plate/ theme -------------------------------------- */
+
 *{ 
     --_bgdark: #111827;
     --_bgdarktext: lightgray;
@@ -8,6 +10,12 @@
 html.dark {
     background-color: var(--_bgdark);
     color: var(--_bgdarktext);
+  }
+.dark header{
+    background-color: var(--_bgdark);
+  }
+  .dark header.visible {
+  box-shadow: 0 1px 0px 0 rgba(65, 65, 65, 0.24);
 }
   
 .dark .nav-links a {
@@ -22,21 +30,60 @@ html {
  body {
       margin: 0 auto;
       width: 100%;
-      max-width: 1300px;
+      max-width: 1200px;
       padding: 1rem;
       line-height: 1.5;
-  
 }
-header {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* _-----------------------------------------header-------------------------------------- */
+.headerName {
+  opacity: 0;
+}
+@keyframes handwriting {
+  0% {
+      width: 0;
+  }
+  100% {
+      width: 50%;
+  }
+}
+
+.headerName.visible {
+  display: inline-block;
+  overflow: hidden;
+  opacity: 100;
+  white-space: nowrap; 
+  font-family: 'Courgette', cursive;
+  animation: handwriting 2s steps(100, end) forwards;
+}
+header{
+    position: sticky; 
+    z-index: 100;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--_bglight);
+    opacity: 90%;
+    overflow: hidden;
+}
+header.visible{
+    box-shadow: 0 1px 0px 0 rgba(0,0,0,0.24);
+    
 }
 .nav {
     display: flex;
     justify-content: flex-end;
     gap: 2em;
     position: relative;
+    transition: transform 0.3s ease-out; 
+    transform: translateX(80%);
+}
+.nav.visible {
+  transform: translateX(0);
 }
 
 .nav-links {
@@ -45,19 +92,19 @@ header {
     left: 48px;
     display: none;
     margin: 0;
-    text-decoration: none;
-    /* position: absolute; */
-    /* right: -100%; */
-    /* transition: right 0.3s ease-out; */
+    
+    overflow: hidden;
+    
+
 }
 
+ 
 .nav-links a {
     /* display: block; */
     text-align: right;
     padding: 10px 0;
-    text-decoration: none;
     font-size: 1.2rem;
-    color: inherit;
+
 }
 .nav-links a:hover,
 .nav-links a:focus {
@@ -87,6 +134,7 @@ header {
 
 @media screen and (min-width: 636px) {
 
+
     .nav-links {
       display: block;
       width: auto;
@@ -103,10 +151,31 @@ header {
     }
   
 }
-@media (max-width: 768px) {
+@media (max-width: 630px) {
     body {
       max-width: 100%;
     }
+    .nav{
+      transform: translateX(70%);
+    }
+}
+/* _-----------------------------------------hero-------------------------------------- */
+
+.hero {
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.photo img {
+  height: 45vw;
+}
+.dark .photo img{
+  filter: brightness(0.60 );
+
+}
+.intro {
+  margin: 0 auto;
 }
 
 
@@ -116,12 +185,13 @@ header {
 
 
 
-
+/* _-----------------------------------------theme toggle-------------------------------------- */
 
 
 #themeToggle {
     border: 0;
     background: none;
+
   }
   #themeToggle:hover {
     cursor: pointer;

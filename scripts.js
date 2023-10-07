@@ -33,12 +33,24 @@ const theme = (() => {
 document.querySelector('.hamburger').addEventListener('click', () => {
     document.querySelector('.nav-links').classList.toggle('expanded');
   });
+  
+// _-----------------------------------------handling scroll nav animation--------------------------------------
+
 window.addEventListener('scroll', () => {
-  const navLinks= document.querySelector('.nav-links');
+  const navLinks= document.querySelector('.nav');
+  const headerName= document.querySelector(".headerName")
   const scrollPosition = window.scrollY || document.documentElement.scrollTop;
   if (scrollPosition > 50){
     navLinks.classList.add('visible');
+    headerName.classList.add('visible');
+    headerName.parentElement.classList.add('visible');
+
+
   }else {
     navLinks.classList.remove('visible');
+    headerName.classList.remove('visible');
+    headerName.parentElement.classList.remove('visible');
+
   }
 })
+
