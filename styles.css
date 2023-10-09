@@ -12,69 +12,70 @@ html.dark {
     background-color: var(--_bgdark);
     color: var(--_bgdarktext);
   }
-.dark header{
-    background-color: var(--_bgdark);
-  }
   .dark header.visible {
-  box-shadow: 0 1px 0px 0 rgba(65, 65, 65, 0.24);
-}
+    box-shadow: 0 1px 0px 0 rgba(65, 65, 65, 0.24);
+  }
   
-.dark .nav-links a {
+  .dark .nav-links a {
     color: var(--_bgdarktext);
-}
+  }
   
-html {
-      background-color: var(--_bglight);
-      font-family: Arial, Helvetica, sans-serif;
-}
-    
- body {
-      margin: 0 auto;
-      width: 100%;
-      max-width: 1200px;
-      padding: 1rem;
-      line-height: 1.5;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-/* _-----------------------------------------header-------------------------------------- */
-.headerName {
-  opacity: 0;
-}
-@keyframes handwriting {
-  0% {
+  html {
+    background-color: var(--_bglight);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  body {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    line-height: 1.5;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  /* _-----------------------------------------header-------------------------------------- */
+  .headerName {
+    opacity: 0;
+  }
+  @keyframes handwriting {
+    0% {
       width: 0;
-  }
-  100% {
+    }
+    100% {
       width: 50%;
+    }
   }
-}
-
-.headerName.visible {
-  display: inline-block;
-  overflow: hidden;
-  opacity: 100;
-  white-space: nowrap; 
-  font-family: 'Courgette', cursive;
-  animation: handwriting 2s steps(100, end) forwards;
-}
-header{
+  
+  .headerName.visible {
+    display: inline-block;
+    overflow: hidden;
+    opacity: 100;
+    white-space: nowrap; 
+    font-family: 'Courgette', cursive;
+    animation: handwriting 2s steps(100, end) forwards;
+  }
+  header{
     position: sticky; 
-    z-index: 100;
+    z-index: 10;
     top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-}
-header.visible{
+  }
+  header.visible{
     box-shadow: 0 1px 0px 0 rgba(0,0,0,0.24);
     background-color: var(--_bglight);
     opacity: 90%;
-}
-.nav {
+  }
+  .dark header{
+      background-color: var(--_bgdark);
+    }
+  
+  .nav {
     display: flex;
     justify-content: flex-end;
     gap: 2em;
@@ -92,10 +93,7 @@ header.visible{
     left: 48px;
     display: none;
     margin: 0;
-    
     overflow: hidden;
-    
-
 }
 
  
@@ -104,8 +102,8 @@ header.visible{
     text-align: right;
     padding: 10px 0;
     font-size: 1.2rem;
-
 }
+
 .nav-links a:hover,
 .nav-links a:focus {
   color: var(--_bgdark);
@@ -128,36 +126,56 @@ header.visible{
   .dark .line {
    background-color: var(--_bgdarktext);
 }
-.expanded {
-    display: unset;
-}
 
 @media screen and (min-width: 636px) {
-
-
-    .nav-links {
-      display: block;
-      width: auto;
-      background: none;
-    }
   
-    .nav-links a {
-      display: inline-block;
-      padding: 15px 20px;
-    }
-
-    .hamburger {
-      display: none;
-    }
+  
+  .nav-links {
+    display: block;
+    width: auto;
+    background: none;
+  }
+  
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+  
+  .hamburger {
+    display: none;
+  }
   
 }
 @media (max-width: 630px) {
-    body {
-      max-width: 100%;
-    }
-    .nav{
-      transform: translateX(70%);
-    }
+  body {
+    max-width: 100%;
+  }
+  .nav{
+    transform: translateX(70%);
+  }
+}
+#line2 {
+  transform: rotate(45deg);
+}
+#line1 {
+  transform: rotate(-45deg);
+}
+.close-menu {
+  height: 15px;
+  overflow: hidden;
+}
+.side-menu{
+  display: none;
+}
+
+.expanded {
+  position: sticky;
+  z-index: 200;
+  top: 0 ;
+  display: block;
+  height: 60dvh;
+  width: 60vw;
+  background-color: var(--_bglight);
 }
 /* _-----------------------------------------hero-------------------------------------- */
 
@@ -215,7 +233,7 @@ header.visible{
 }
 
 .cta-button.secondary {
-  background-color: #ccc;
+  background-color: #777;
 }
 
 @media only screen and (max-width: 768px) {
