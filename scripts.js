@@ -32,7 +32,6 @@ const theme = (() => {
 // _-----------------------------------------handling menu toggling --------------------------------------
 document.querySelector('.hamburger').addEventListener('click', () => {
     document.querySelector('.side-menu').classList.toggle('expanded');
-    // document.querySelector('.side-menu').classList.remove('expanded');
   });
   document.querySelector('.close-menu').addEventListener('click', () => {
     document.querySelector('.side-menu').classList.remove('expanded');

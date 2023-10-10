@@ -127,6 +127,14 @@ html.dark {
    background-color: var(--_bgdarktext);
 }
 
+.line {
+  display: block;
+  width: 20px;
+  height: 2px;
+
+  background-color: var(--_bgdark);
+}
+
 @media screen and (min-width: 636px) {
   
   
@@ -153,6 +161,9 @@ html.dark {
   .nav{
     transform: translateX(70%);
   }
+  .headerName.visible {
+    animation: handwriting 1s steps(100, end) forwards;
+  }
 }
 #line2 {
   transform: rotate(45deg);
@@ -163,19 +174,44 @@ html.dark {
 .close-menu {
   height: 15px;
   overflow: hidden;
+  width: 50px;
+  margin-left: auto;
+  margin-bottom: 20px;
 }
 .side-menu{
   display: none;
 }
+@keyframes sideanimation {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
 
-.expanded {
-  position: sticky;
+.side-menu{
+  position: fixed;
   z-index: 200;
   top: 0 ;
-  display: block;
-  height: 60dvh;
-  width: 60vw;
+  right: 0;
+  display:none;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 70vw;
+  height: 50dvh;
   background-color: var(--_bglight);
+  padding: 26px 5px;
+  box-shadow: -5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.dark .side-menu{
+  background-color: var(--_bgdark);
+}
+
+.side-menu.expanded {
+  display: flex;
+  animation: sideanimation 0.2s steps(100, end) forwards;
 }
 /* _-----------------------------------------hero-------------------------------------- */
 
