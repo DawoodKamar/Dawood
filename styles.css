@@ -325,16 +325,17 @@ html.dark {
 /* _-----------------------------------------techskills-------------------------------------- */
 .techskills h2{
   display: flex;
-  font-size: 5rem;
+  font-size: 4.3rem;
   margin: 0;
   justify-content: center;
 }
 .skills{
   display: flex;
   flex-wrap: wrap;
-  gap: 5vw; 
+  max-width: 900px;
+  gap: 50px; 
   justify-content: space-around;
-  margin-top: 5vw;
+  margin: 20px auto 0 auto;
 }
 .skill {
   display: flex;
@@ -347,6 +348,9 @@ html.dark {
 
 .skill img{
   width: 60px;
-  background-color: var(--_bglight);
   border-radius: 20px;
+}
+.dark .skill img {
+  
+  background-color: var(--_bgdarktext);
 }
