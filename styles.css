@@ -226,6 +226,7 @@ html.dark {
 }
 .photo img {
   height: 45vw;
+  max-height: 600px;
 }
 .dark .photo img{
   filter: brightness(0.60 );
@@ -294,14 +295,6 @@ html.dark {
 
 
 
-
-
-
-
-
-
-
-
 /* _-----------------------------------------theme toggle-------------------------------------- */
 
 
@@ -328,3 +321,32 @@ html.dark {
   .dark .moon {
     fill: white;
   }
+
+/* _-----------------------------------------techskills-------------------------------------- */
+.techskills h2{
+  display: flex;
+  font-size: 5rem;
+  margin: 0;
+  justify-content: center;
+}
+.skills{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5vw; 
+  justify-content: space-around;
+  margin-top: 5vw;
+}
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  
+
+}
+
+.skill img{
+  width: 60px;
+  background-color: var(--_bglight);
+  border-radius: 20px;
+}
