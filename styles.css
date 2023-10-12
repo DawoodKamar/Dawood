@@ -323,11 +323,12 @@ html.dark {
   }
 
 /* _-----------------------------------------techskills-------------------------------------- */
-.techskills h2{
+.h1{
   display: flex;
   font-size: 4.3rem;
   margin: 0;
   justify-content: center;
+  padding: 50px;
 }
 .skills{
   display: flex;
@@ -342,15 +343,12 @@ html.dark {
   flex-direction: column;
   align-items: center;
 
-  
-
 }
 
-.skill img{
-  width: 60px;
-  border-radius: 20px;
+
+.dark svg path {
+  fill: var(--_bgdarktext); 
 }
-.dark .skill img {
-  
-  background-color: var(--_bgdarktext);
-}
+
+/* _-----------------------------------------projects-------------------------------------- */
+
