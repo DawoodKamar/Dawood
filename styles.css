@@ -110,7 +110,10 @@ html.dark {
   text-decoration: none;
   transform: scale(1.05);
 }
-
+.dark .nav-links a:hover,
+.dark .nav-links a:focus {
+  color: var(--_bgdarktext);
+}
 .hamburger {
     padding-right: 20px;
     cursor: pointer;
