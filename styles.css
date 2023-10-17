@@ -355,3 +355,102 @@ html.dark {
 
 /* _-----------------------------------------projects-------------------------------------- */
 
+/* 1. Style for the Project section */
+.projects {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* 2. Style for individual project containers */
+.dkservices,
+.sharp,
+.codscope {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  border-radius: 15px;
+  background-color: #ededed;
+}
+
+.dark .dkservices,
+.dark .sharp,
+.dark .codscope {
+  background-color: #131b2d;
+}
+/* .sharp{
+  flex-direction: row-reverse;
+} */
+
+/* 3. Style for images */
+.dkservices img,
+.sharp img,
+.codscope img {
+  height: 250px;
+  width: auto;
+  padding: 20px;
+}
+
+/* 4. Style for description */
+.disc {
+  flex: 1;
+  padding-left: 20px;
+  text-align: center;
+}
+
+/* 5. Style for text components */
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.summary {
+  font-size: 1rem;
+}
+
+.techused {
+  font-size: 0.9rem;
+}
+
+/* 6. Style for buttons */
+.more {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.more:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 1000px) {
+
+  .dkservices img,
+  .sharp img,
+  .codscope img {
+    height: 200px;
+  }
+
+}
+/* 7. Media query for responsiveness */
+@media (max-width: 768px) {
+  .dkservices,
+  .sharp,
+  .codscope {
+    flex-direction: column;
+    }
+
+  .dkservices img,
+  .sharp img,
+  .codscope img {
+    width: 100%;
+    height: auto;
+  }
+
+  .disc {
+    padding-left: 0;
+  }
+}
