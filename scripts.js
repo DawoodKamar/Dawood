@@ -62,3 +62,36 @@ document.querySelector(".cta-button").addEventListener("click", () => {
     window.location.hash = "#projects";
   } else window.location.hash = "#projects";
 });
+
+// _-----------------------------------------handling project expanding--------------------------------------
+
+function expandProject(project) {
+  // Toggle expanded class
+  project.classList.toggle("expanded-project");
+
+  // Get the 'disc' div inside the clicked project
+  const disc = project.querySelector(".disc");
+
+  // Create or toggle new project detail div
+  let projectDetail = project.querySelector(".project-detail");
+  if (!projectDetail) {
+    projectDetail = document.createElement("div");
+    projectDetail.className = "project-detail";
+    projectDetail.innerHTML = "<p>Your project details here.</p>";
+    disc.appendChild(projectDetail);
+  }
+  projectDetail.style.display =
+    projectDetail.style.display === "none" || !projectDetail.style.display
+      ? "block"
+      : "none";
+}
+
+// Add event listener to 'More Info' buttons
+const moreInfoButtons = document.querySelectorAll(".more");
+moreInfoButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const project = this.closest(".dkservices, .sharp, .codscope");
+    expandProject(project);
+    project.classList.toggle("newProjectStyle");
+  });
+});
