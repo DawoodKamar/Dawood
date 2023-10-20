@@ -331,7 +331,7 @@ html.dark {
   font-size: 4.3rem;
   margin: 0;
   justify-content: center;
-  padding: 50px;
+  padding: 50px 40px 40px 40px;
 }
 .skills{
   display: flex;
@@ -358,18 +358,24 @@ html.dark {
 .projects {
   padding: 20px;
   border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 25px;
 }
 
 .dkservices,
 .sharp,
 .codscope {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
   border-radius: 15px;
   background-color: #ededed;
-  transition: all 1s ease;
+  transition: all 0.3s ease;
 }
 .newProjectStyle{
   flex-direction: column;
@@ -446,10 +452,17 @@ html.dark {
 }
 /* _-----------------------------------------expanded projects-------------------------------------- */
 
-
+@media (min-width: 800px) {
+  .expanded-project .img {
+    height: 408px;
+    width: 800px;
+  }
+  }
+@media (min-width: 1000px) {
 .expanded-project .img {
   height: 510px;
   width: 1000px;
+}
 }
 
 .expanded-project .title {
@@ -459,7 +472,7 @@ html.dark {
 /* Add this to make the transitions smooth */
 .img,
 .title {
-  transition: all 1s ease;
+  transition: all 0.3s ease;
 }
 
 /* Additional style for new project detail section */

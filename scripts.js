@@ -65,7 +65,7 @@ document.querySelector(".cta-button").addEventListener("click", () => {
 
 // _-----------------------------------------handling project expanding--------------------------------------
 
-function expandProject(project) {
+function expandProject(project, buttonElement) {
   // Toggle expanded class
   project.classList.toggle("expanded-project");
 
@@ -78,7 +78,14 @@ function expandProject(project) {
     projectDetail = document.createElement("div");
     projectDetail.className = "project-detail";
     projectDetail.innerHTML = "<p>Your project details here.</p>";
+    document.querySelector(".more").innerText = "Show Less";
     disc.appendChild(projectDetail);
+
+    if (buttonElement.innerText === "More Info") {
+      buttonElement.innerText = "Show Less";
+    } else {
+      buttonElement.innerText = "More Info";
+    }
   }
   projectDetail.style.display =
     projectDetail.style.display === "none" || !projectDetail.style.display
@@ -91,7 +98,7 @@ const moreInfoButtons = document.querySelectorAll(".more");
 moreInfoButtons.forEach((button) => {
   button.addEventListener("click", function () {
     const project = this.closest(".dkservices, .sharp, .codscope");
-    expandProject(project);
+    expandProject(project, this);
     project.classList.toggle("newProjectStyle");
   });
 });
