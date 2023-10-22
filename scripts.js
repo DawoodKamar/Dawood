@@ -69,28 +69,64 @@ function expandProject(project, buttonElement) {
   // Toggle expanded class
   project.classList.toggle("expanded-project");
 
-  // Get the 'disc' div inside the clicked project
   const disc = project.querySelector(".disc");
-
-  // Create or toggle new project detail div
   let projectDetail = project.querySelector(".project-detail");
-  if (!projectDetail) {
-    projectDetail = document.createElement("div");
-    projectDetail.className = "project-detail";
-    projectDetail.innerHTML = "<p>Your project details here.</p>";
-    document.querySelector(".more").innerText = "Show Less";
-    disc.appendChild(projectDetail);
 
-    if (buttonElement.innerText === "More Info") {
+  if (projectDetail) {
+    if (
+      projectDetail.style.display === "none" ||
+      !projectDetail.style.display
+    ) {
+      projectDetail.style.display = "block";
       buttonElement.innerText = "Show Less";
     } else {
+      projectDetail.style.display = "none";
       buttonElement.innerText = "More Info";
+      projectDetail.remove(); // Remove the element
     }
+  } else {
+    projectDetail = document.createElement("div");
+    projectDetail.className = "project-detail";
+    projectDetail.innerHTML = `<div class="common-container">
+    <p class="summary">DK Services is a fleet maintenance company that I founded. Our main aim is to keep our customers' vehicles running smoothly. But like any business, we faced some challenges along the way.</p>
+    
+    <section class="section-block">
+      <h4>Situation</h4>
+      <p>Managing a whole fleet of vehicles was no small task. The work orders were hard to keep track of and it was affecting our efficiency.</p>  
+    </section>
+  
+    <section class="section-block">
+    <h4>Task</h4>
+    <p>Our main goal was to make things simpler and more organized. We decided that a web application could help manage the work orders better.</p>
+    </section>
+    <section class="section-block">
+    <h4>Action</h4>
+    <p>So I took charge of this and chose a bunch of tech tools to help us out. We used Next.js to build the web server and React.js to create the user interface. For storing all our data, we used Prisma and MySQL. And we made sure to use Git and GitHub to keep everything organized. The new app has features like a login system and a real-time work order updater. You can check out the <a href="https://github.com/DawoodKamar/DK-services">code on GitHub</a> and <a href="https://dk-services.vercel.app/">visit the live app here</a>.</p>
+    </section>
+    
+    <section class="section-block">
+    <h4>Result</h4>
+    <p>The app has made our lives so much easier. Work orders are managed better, and our profits went up by about 20%. It was a big lesson in how the right tech can really make a difference in how we work.</p>
+    </section>
+    
+    <figure>
+    <img src="images/form.png" alt="Image of the workorder form on dk services">
+    <figcaption>Workorder form on dk services</figcaption>
+  </figure>
+  <figure>
+  <img src="images/submissions.png" alt="Image of the list of submissions with search functionality">
+  <figcaption>List of submissions with search functionality</figcaption>
+</figure>
+      <figure>
+      <img src="images/pdfexample.png" alt="image of PDF download functionality for easy invoicing">
+      <figcaption>PDF download functionality for easy invoicing</figcaption>
+    </figure>
+    </div>
+  `;
+    buttonElement.innerText = "Show Less";
+    disc.appendChild(projectDetail);
+    projectDetail.style.display = "block";
   }
-  projectDetail.style.display =
-    projectDetail.style.display === "none" || !projectDetail.style.display
-      ? "block"
-      : "none";
 }
 
 // Add event listener to 'More Info' buttons

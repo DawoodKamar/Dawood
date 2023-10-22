@@ -276,7 +276,7 @@ html.dark {
   background-color: #777;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .hero{
     flex-direction: column-reverse;
   }
@@ -421,6 +421,7 @@ html.dark {
   background-color: #007bff;
   color: white;
   padding: 10px;
+  margin-top: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -469,14 +470,70 @@ html.dark {
   font-size: 2rem;
 }
 
-/* Add this to make the transitions smooth */
 .img,
 .title {
   transition: all 0.3s ease;
 }
 
-/* Additional style for new project detail section */
 .project-detail {
-  display: none;  /* Initially hidden */
-  /* Add your own styles here */
+  display: none; 
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.summary {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.section-block {
+  margin-bottom: 15px;
+}
+.section-block> p > a{
+  color: #0056b3;
+}
+.section-block h4 {
+  font-weight: bold;
+}
+
+.section-block p {
+  margin-top: 5px;
+  
+}
+
+
+figure {
+  text-align: center;
+  float: right;
+  width: 30%;
+  margin: 0 10px 20px 10px;
+}
+
+figure > img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  margin: 8px 0px;
+  font-size: 14px;
+  color: #555;
+}
+
+
+.common-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  figure {
+    float: none;
+    width: 100%;
+    margin: 0;
+  }
 }
