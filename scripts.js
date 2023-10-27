@@ -30,11 +30,35 @@ document
   .addEventListener("click", handleToggleClick);
 
 // _-----------------------------------------handling menu toggling --------------------------------------
-document.querySelector(".hamburger").addEventListener("click", () => {
-  document.querySelector(".side-menu").classList.toggle("expanded");
+const sideMenu = document.querySelector(".side-menu");
+const hamburger = document.querySelector(".hamburger");
+const closeMenuBtn = document.querySelector(".close-menu");
+
+const closeMenu = () => sideMenu.classList.remove("expanded");
+
+hamburger.addEventListener("click", (event) => {
+  sideMenu.classList.toggle("expanded");
+  event.stopPropagation();
 });
-document.querySelector(".close-menu").addEventListener("click", () => {
-  document.querySelector(".side-menu").classList.remove("expanded");
+
+closeMenuBtn.addEventListener("click", (event) => {
+  closeMenu();
+  event.stopPropagation();
+});
+
+const menuChoices = sideMenu.querySelectorAll("a");
+menuChoices.forEach((choice) => {
+  choice.addEventListener("click", closeMenu);
+});
+
+window.addEventListener("click", function (event) {
+  if (
+    sideMenu.classList.contains("expanded") &&
+    event.target !== sideMenu &&
+    !sideMenu.contains(event.target)
+  ) {
+    closeMenu();
+  }
 });
 
 // _-----------------------------------------handling scroll nav animation--------------------------------------
@@ -227,4 +251,39 @@ moreInfoButtons.forEach((button) => {
     expandProject(project, this);
     project.classList.toggle("newProjectStyle");
   });
+});
+
+// _-----------------------------------------handling contact--------------------------------------
+
+const contactBtn = document.querySelector(".contact");
+const contactLinks = document.querySelectorAll(".contact-link");
+
+// Get the card and the close button element
+const contactCard = document.getElementById("contactCard");
+const closeBtn = document.getElementById("closeBtn");
+
+// Function to show the card
+const showCard = () => (contactCard.style.display = "block");
+
+// Show the card when the contact button is clicked
+contactBtn.addEventListener("click", showCard);
+
+// Show the card when any of the contact links are clicked
+contactLinks.forEach((link) => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent the default link behavior
+    showCard();
+  });
+});
+
+// Close the card when the close button is clicked
+closeBtn.addEventListener("click", function () {
+  contactCard.style.display = "none";
+});
+
+// Close the card when the background is clicked
+window.addEventListener("click", function (event) {
+  if (event.target === contactCard) {
+    contactCard.style.display = "none";
+  }
 });
