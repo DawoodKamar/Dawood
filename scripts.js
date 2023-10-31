@@ -116,40 +116,64 @@ function expandProject(project, buttonElement) {
       switch (classx) {
         case "dkservices":
           projectDetail.innerHTML = `<div class="common-container">
-          <p class="summary">DK Services is a fleet maintenance company that I founded. Our main aim is to keep our customers' vehicles running smoothly. But like any business, we faced some challenges along the way.</p>
+          <p class="summary">
+            DK Services is a fleet maintenance company that I founded. 
+            The main aim is to keep customers' vehicles running smoothly. 
+            Like any business, challenges were faced along the way.
+          </p>
           
           <section class="section-block">
             <h4>Situation</h4>
-            <p>Managing a whole fleet of vehicles was no small task. The work orders were hard to keep track of and it was affecting our efficiency.</p>  
+            <p>
+              Managing a whole fleet of vehicles was no small task. 
+              Work orders were hard to keep track of, affecting efficiency.
+            </p>  
           </section>
         
           <section class="section-block">
-          <h4>Task</h4>
-          <p>Our main goal was to make things simpler and more organized. We decided that a web application could help manage the work orders better.</p>
+            <h4>Task</h4>
+            <p>
+              The main goal was to make things simpler and more organized. 
+              A web application was identified as a solution to help manage work orders better.
+            </p>
           </section>
+        
           <section class="section-block">
-          <h4>Action</h4>
-          <p>So I took charge of this and chose a bunch of tech tools to help us out. We used Next.js to build the web server and React.js to create the user interface. For storing all our data, we used Prisma and MySQL. And we made sure to use Git and GitHub to keep everything organized. The new app has features like a login system and a real-time work order updater. You can check out the <a href="https://github.com/DawoodKamar/DK-services">code on GitHub</a> and <a href="https://dk-services.vercel.app/">visit the live app here</a>.</p>
+            <h4>Action</h4>
+            <p>
+              Taking charge of this, I chose a variety of tech tools. 
+              I used Next.js and React.js to build the web server and the user interface. 
+              For data storage, I used Prisma and MySQL. Git and GitHub were utilized to keep everything organized. 
+              The new app features a login system and a real-time work order updater. 
+              The <a href="https://github.com/DawoodKamar/DK-services">code can be checked out on GitHub</a> 
+              and you can <a href="https://dk-services.vercel.app/">visit the live app here</a>.
+            </p>
           </section>
-          
+        
           <section class="section-block">
-          <h4>Result</h4>
-          <p>The app has made our lives so much easier. Work orders are managed better, and our profits went up by about 20%. It was a big lesson in how the right tech can really make a difference in how we work.</p>
+            <h4>Result</h4>
+            <p>
+              The app has simplified work order management and increased profits by about 20%. 
+              This project served as a big lesson in how the right tech can make a significant difference.
+            </p>
           </section>
           
           <figure>
-          <img src="images/form.png" alt="Image of the workorder form on dk services">
-          <figcaption>Workorder form on dk services</figcaption>
-        </figure>
-        <figure>
-        <img src="images/submissions.png" alt="Image of the list of submissions with search functionality">
-        <figcaption>List of submissions with search functionality</figcaption>
-      </figure>
-            <figure>
+            <img src="images/form.png" alt="Image of the workorder form on dk services">
+            <figcaption>Workorder form on dk services</figcaption>
+          </figure>
+        
+          <figure>
+            <img src="images/submissions.png" alt="Image of the list of submissions with search functionality">
+            <figcaption>List of submissions with search functionality</figcaption>
+          </figure>
+        
+          <figure>
             <img src="images/pdfexample.png" alt="image of PDF download functionality for easy invoicing">
             <figcaption>PDF download functionality for easy invoicing</figcaption>
           </figure>
-          </div>
+        </div>
+        
         `;
           break;
         case "sharp":
@@ -199,7 +223,7 @@ function expandProject(project, buttonElement) {
           
           <section class="section-block">
             <h4>Situation</h4>
-            <p>As a fan of Call of Duty, I recognized a lack of dedicated spaces where fans could discuss the game, share tips, and get the latest news. I wanted to create a platform that could serve these needs.</p>  
+            <p>As a casual Call of Duty gamer, I recognized a lack of dedicated spaces where fans could discuss the game, share tips, and get the latest news. I wanted to create a platform that could serve these needs.</p>  
           </section>
         
           <section class="section-block">
