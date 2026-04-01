@@ -1,0 +1,120 @@
+---
+import { SITE_TITLE } from "../config";
+const currentPath = Astro.url.pathname;
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/contact/", label: "Contact" },
+];
+---
+
+<header class="border-b border-gray-200 dark:border-gray-800">
+  <nav class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
+    <a href="/" class="text-xl font-bold">{SITE_TITLE}</a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden items-center gap-6 md:flex">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={currentPath === link.href ? "page" : undefined}
+            class:list={[
+              "hover:text-blue-600 dark:hover:text-blue-400",
+              { "font-semibold text-blue-600 dark:text-blue-400": currentPath === link.href },
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <!-- Dark mode toggle (desktop) -->
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle dark mode"
+        class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+      >
+        <span class="dark:hidden">🌙</span>
+        <span class="hidden dark:inline">☀️</span>
+      </button>
+
+      <!-- Hamburger button (mobile) -->
+      <button
+        id="menu-toggle"
+        type="button"
+        class="md:hidden rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Toggle menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="border-b border-gray-200 md:hidden dark:border-gray-800" hidden>
+    <ul class="space-y-2 px-4 py-4">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={currentPath === link.href ? "page" : undefined}
+            class:list={[
+              "block py-1 hover:text-blue-600 dark:hover:text-blue-400",
+              { "font-semibold text-blue-600 dark:text-blue-400": currentPath === link.href },
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <button
+          id="mobile-theme-toggle"
+          type="button"
+          aria-label="Toggle dark mode"
+          class="flex items-center gap-2 py-1 hover:text-blue-600 dark:hover:text-blue-400"
+        >
+          <span class="dark:hidden">🌙 Dark mode</span>
+          <span class="hidden dark:inline">☀️ Light mode</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const themeToggle = document.getElementById("theme-toggle");
+    const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener("click", () => {
+        const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!expanded));
+        mobileMenu.hidden = expanded;
+      });
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    if (themeToggle) {
+      themeToggle.addEventListener("click", toggleTheme);
+    }
+    if (mobileThemeToggle) {
+      mobileThemeToggle.addEventListener("click", toggleTheme);
+    }
+  });
+</script>

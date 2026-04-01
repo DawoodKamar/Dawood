@@ -1,16 +1,9 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dawood Kamar</title>
-  </head>
-  <body>
-    <main class="prose mx-auto p-8">
-      <h1 class="text-4xl font-bold">Dawood Kamar</h1>
-      <p class="text-lg text-gray-600">Site under construction. Astro + Tailwind v4 foundation is live.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout title="Dawood Kamar">
+  <div class="prose dark:prose-invert">
+    <h1>Dawood Kamar</h1>
+    <p>Site under construction.</p>
+  </div>
+</BaseLayout>
