@@ -7,7 +7,7 @@ Replace the existing vanilla HTML/CSS/JS portfolio with a full Astro 5.17 + Tail
 ## Phases
 
 - [x] **Phase 1: Foundation** - Astro project, Tailwind v4, content collections, sample posts (completed 2026-04-01)
-- [ ] **Phase 2: Layout & Navigation** - BaseLayout, navigation, footer, dark mode, homepage sections
+- [x] **Phase 2: Layout & Navigation** - BaseLayout, navigation, footer, dark mode, homepage sections (completed 2026-04-01)
 - [ ] **Phase 3: Pages & Features** - Blog listing/post pages, contact form, newsletter component
 - [ ] **Phase 4: SEO & Polish** - Meta tags, structured data, sitemap, RSS, Lighthouse 90+
 
@@ -44,7 +44,7 @@ Plans:
 
 Plans:
 - [x] 02-01: Build `BaseLayout.astro` with `<ClientRouter />` from `astro:transitions`, `is:inline` FOUC-prevention head script, `astro:after-swap` dark mode listener, and `Navigation.astro` + `Footer.astro` with `astro:page-load` event listeners
-- [ ] 02-02: Build all five homepage sections (hero, positioning, content pillars, featured posts, newsletter placeholder) wired to live collection data
+- [x] 02-02: Build all five homepage sections (hero, positioning, content pillars, featured posts, newsletter placeholder) wired to live collection data
 
 ### Phase 3: Pages & Features
 **Goal**: Visitors can read blog posts, subscribe to the newsletter, and send a contact message — all three page types are fully functional.
@@ -88,6 +88,6 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-04-01 |
-| 2. Layout & Navigation | 1/2 | In Progress|  |
+| 2. Layout & Navigation | 2/2 | Complete   | 2026-04-01 |
 | 3. Pages & Features | 0/2 | Not started | - |
 | 4. SEO & Polish | 0/2 | Not started | - |

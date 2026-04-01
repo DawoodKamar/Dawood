@@ -37,11 +37,11 @@
 
 ### Homepage
 
-- [ ] **HOME-01**: Hero section with headline, subheadline, and CTA linking to `/blog`
-- [ ] **HOME-02**: Positioning section with 2–3 paragraphs of body text
-- [ ] **HOME-03**: Content pillars section: 4 pillars each with title and short description (AI & Work, Focus & Discipline, Culture & Place, Clarity & Communication)
-- [ ] **HOME-04**: Featured posts section: dynamically renders the 3 most recent non-draft blog posts (title, excerpt, date, reading time) with links
-- [ ] **HOME-05**: Newsletter signup section with email input and submit button
+- [x] **HOME-01**: Hero section with headline, subheadline, and CTA linking to `/blog`
+- [x] **HOME-02**: Positioning section with 2–3 paragraphs of body text
+- [x] **HOME-03**: Content pillars section: 4 pillars each with title and short description (AI & Work, Focus & Discipline, Culture & Place, Clarity & Communication)
+- [x] **HOME-04**: Featured posts section: dynamically renders the 3 most recent non-draft blog posts (title, excerpt, date, reading time) with links
+- [x] **HOME-05**: Newsletter signup section with email input and submit button
 
 ### Blog
 
