@@ -27,11 +27,11 @@ A fast, readable blog that makes it effortless to publish and share writing — 
 
 ### Active
 
+- ✓ Persistent nav with active state highlighting and mobile hamburger — Validated in Phase 2: Layout & Navigation
+- ✓ Persistent footer with copyright, nav links, and social links (YouTube, LinkedIn) — Validated in Phase 2: Layout & Navigation
+- ✓ View transitions between all pages using Astro's View Transitions API — Validated in Phase 2: Layout & Navigation
+- ✓ Homepage: hero, positioning text, content pillars (4), featured posts (3 most recent), newsletter signup — Validated in Phase 2: Layout & Navigation
 - [ ] Three-page structure: Homepage (`/`), Blog (`/blog`), Get in Touch (`/contact`)
-- [ ] Persistent nav with active state highlighting and mobile hamburger
-- [ ] Persistent footer with copyright, nav links, and social links (YouTube, LinkedIn)
-- [ ] View transitions between all pages using Astro's View Transitions API
-- [ ] Homepage: hero, positioning text, content pillars (4), featured posts (3 most recent), newsletter signup
 - [ ] Blog listing page with post cards (title, excerpt, date, reading time, category)
 - [ ] Individual blog post pages with full markdown rendering
 - [ ] Newsletter signup component (reusable) in ≥3 locations: homepage, post footer, site footer
@@ -102,4 +102,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 after Phase 1: Foundation complete*
+*Last updated: 2026-04-01 after Phase 2: Layout & Navigation complete*
