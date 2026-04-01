@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import PostNavigation from "../../components/PostNavigation.astro";
+import NewsletterSignup from "../../components/NewsletterSignup.astro";
+
+export async function getStaticPaths() {
+  const posts = (
+    await getCollection("blog", ({ data }) =>
+      import.meta.env.PROD ? data.draft !== true : true
+    )
+  ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  return posts.map((post, index) => ({
+    params: { id: post.id },
+    props: {
+      post,
+      prevPost: posts[index + 1] ?? null,
+      nextPost: posts[index - 1] ?? null,
+    },
+  }));
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(post);
+const minutesRead = remarkPluginFrontmatter.minutesRead;
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold md:text-4xl">{post.data.title}</h1>
+      <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <time datetime={post.data.date.toISOString()}>
+          {post.data.date.toLocaleDateString("en-GB", { dateStyle: "long" })}
+        </time>
+        <span>·</span>
+        <span>{minutesRead}</span>
+      </div>
+      <span class="mt-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+        {post.data.category}
+      </span>
+    </header>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <Content />
+    </div>
+  </article>
+
+  <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+
+  <div class="mt-12">
+    <NewsletterSignup />
+  </div>
+</BaseLayout>
