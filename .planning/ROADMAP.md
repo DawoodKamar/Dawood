@@ -87,7 +87,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/2 | Complete   | 2026-04-01 |
+| 1. Foundation | 2/2 | Complete    | 2026-04-01 |
 | 2. Layout & Navigation | 0/2 | Not started | - |
 | 3. Pages & Features | 0/2 | Not started | - |
 | 4. SEO & Polish | 0/2 | Not started | - |
