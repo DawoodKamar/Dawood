@@ -90,7 +90,7 @@ Each task was committed atomically:
 1. **Task 1: Scaffold Astro 5.17 project and install dependencies** - `4c1fdf0` (chore)
 2. **Task 2: Create astro.config.mjs, global CSS, config.ts, remark plugin, and index page** - `d41a082` (feat)
 
-**Plan metadata:** _(to be added after docs commit)_
+**Plan metadata:** `4e9cc1f` (docs: complete plan)
 
 ## Files Created/Modified
 
