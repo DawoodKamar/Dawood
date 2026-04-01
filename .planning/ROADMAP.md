@@ -6,7 +6,7 @@ Replace the existing vanilla HTML/CSS/JS portfolio with a full Astro 5.17 + Tail
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** - Astro project, Tailwind v4, content collections, sample posts
+- [x] **Phase 1: Foundation** - Astro project, Tailwind v4, content collections, sample posts (completed 2026-04-01)
 - [ ] **Phase 2: Layout & Navigation** - BaseLayout, navigation, footer, dark mode, homepage sections
 - [ ] **Phase 3: Pages & Features** - Blog listing/post pages, contact form, newsletter component
 - [ ] **Phase 4: SEO & Polish** - Meta tags, structured data, sitemap, RSS, Lighthouse 90+
@@ -27,7 +27,7 @@ Replace the existing vanilla HTML/CSS/JS portfolio with a full Astro 5.17 + Tail
 
 Plans:
 - [x] 01-01: Initialize Astro 5.17 project, configure Tailwind v4 via `@tailwindcss/vite`, update `netlify.toml`, set `site` URL and `output: "static"` in `astro.config.mjs`, export `SITE_URL` from `src/config.ts`
-- [ ] 01-02: Define `src/content.config.ts` with Zod blog schema (title, date, description, category enum, tags, draft), install `remarkReadingTime` plugin, create three sample posts
+- [x] 01-02: Define `src/content.config.ts` with Zod blog schema (title, date, description, category enum, tags, draft), install `remarkReadingTime` plugin, create three sample posts
 
 ### Phase 2: Layout & Navigation
 **Goal**: Every page shares a persistent shell with working navigation, footer, dark mode, and view transitions; the homepage is fully rendered with all five sections.
@@ -87,7 +87,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/2 | In Progress|  |
+| 1. Foundation | 2/2 | Complete   | 2026-04-01 |
 | 2. Layout & Navigation | 0/2 | Not started | - |
 | 3. Pages & Features | 0/2 | Not started | - |
 | 4. SEO & Polish | 0/2 | Not started | - |

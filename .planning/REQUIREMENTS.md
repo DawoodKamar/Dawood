@@ -16,14 +16,14 @@
 
 ### Content Collections
 
-- [ ] **CONTENT-01**: `src/content.config.ts` (not `src/content/config.ts`) defines blog collection with Zod schema
-- [ ] **CONTENT-02**: Blog frontmatter schema: `title` (string), `date` (date), `description` (string), `category` (enum), `tags` (string[]), `draft` (boolean, default false)
-- [ ] **CONTENT-03**: Draft posts excluded from production in all 4 locations: blog index, `getStaticPaths`, RSS feed, sitemap
-- [ ] **CONTENT-04**: 3 sample blog posts with realistic frontmatter and placeholder content (300–500 words each)
+- [x] **CONTENT-01**: `src/content.config.ts` (not `src/content/config.ts`) defines blog collection with Zod schema
+- [x] **CONTENT-02**: Blog frontmatter schema: `title` (string), `date` (date), `description` (string), `category` (enum), `tags` (string[]), `draft` (boolean, default false)
+- [x] **CONTENT-03**: Draft posts excluded from production in all 4 locations: blog index, `getStaticPaths`, RSS feed, sitemap
+- [x] **CONTENT-04**: 3 sample blog posts with realistic frontmatter and placeholder content (300–500 words each)
   - "Most People Aren't Behind on AI — They're Overloaded by Noise" (AI & Work, 2026-03-15)
   - "Focus Is Becoming a Competitive Advantage" (Focus & Discipline, 2026-03-22)
   - "What Switzerland Taught Me About Ambition" (Culture & Place, 2026-03-29)
-- [ ] **CONTENT-05**: `remarkReadingTime` remark plugin installed and reading time injected into frontmatter at build time
+- [x] **CONTENT-05**: `remarkReadingTime` remark plugin installed and reading time injected into frontmatter at build time
 
 ### Navigation & Layout
 
