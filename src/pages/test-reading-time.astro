@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from "astro:content";
+import "../styles/global.css";
+
+// Get all posts (including drafts in dev, excluding in prod)
+const allPosts = await getCollection("blog", ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true
+);
+
+// Get only non-draft posts (simulates production behavior)
+const publishedPosts = await getCollection("blog", ({ data }) =>
+  data.draft !== true
+);
+
+// Render first post to get remarkPluginFrontmatter
+const firstPost = allPosts[0];
+const { remarkPluginFrontmatter } = await render(firstPost);
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Test: Reading Time & Draft Filtering</title>
+  </head>
+  <body class="prose mx-auto p-8">
+    <h1>Content Collection Verification</h1>
+
+    <h2>All Posts (dev mode includes drafts)</h2>
+    <p>Count: {allPosts.length}</p>
+    <ul>
+      {allPosts.map((post) => (
+        <li>{post.data.title} — draft: {String(post.data.draft)}</li>
+      ))}
+    </ul>
+
+    <h2>Published Posts Only (draft filter applied)</h2>
+    <p>Count: {publishedPosts.length}</p>
+    <ul>
+      {publishedPosts.map((post) => (
+        <li>{post.data.title}</li>
+      ))}
+    </ul>
+
+    <h2>Reading Time (from remarkPluginFrontmatter)</h2>
+    <p>Post: {firstPost.data.title}</p>
+    <p>minutesRead: {remarkPluginFrontmatter.minutesRead}</p>
+    <pre>{JSON.stringify(remarkPluginFrontmatter, null, 2)}</pre>
+
+    <h2>Verification Checklist</h2>
+    <ul>
+      <li>CONTENT-01: Collection loads without errors (if you see posts above)</li>
+      <li>CONTENT-02: Schema validates frontmatter (build succeeded)</li>
+      <li>CONTENT-03: Published count should be 2 (draft excluded): {publishedPosts.length}</li>
+      <li>CONTENT-04: Total posts should be 3 in dev: {allPosts.length}</li>
+      <li>CONTENT-05: minutesRead should be non-empty: "{remarkPluginFrontmatter.minutesRead}"</li>
+    </ul>
+  </body>
+</html>
