@@ -1,0 +1,63 @@
+---
+// TODO: Confirm Buttondown username is "dawoodkamar" — update if different
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+{compact ? (
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/dawoodkamar"
+    method="post"
+    target="_blank"
+    class="mx-auto flex max-w-md gap-2"
+  >
+    <input type="hidden" name="embed" value="1" />
+    <input
+      type="email"
+      name="email"
+      placeholder="your@email.com"
+      required
+      aria-label="Email address"
+      class="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+    />
+    <button
+      type="submit"
+      class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+    >
+      Subscribe
+    </button>
+  </form>
+) : (
+  <section class="rounded-lg bg-gray-50 py-12 text-center dark:bg-gray-900">
+    <h2 class="text-2xl font-bold md:text-3xl">Stay in the Loop</h2>
+    <p class="mx-auto mt-4 max-w-lg text-gray-600 dark:text-gray-400">
+      Writing on AI, focus, and meaningful work. No noise.
+    </p>
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/dawoodkamar"
+      method="post"
+      target="_blank"
+      class="mx-auto mt-6 flex max-w-md gap-2"
+    >
+      <input type="hidden" name="embed" value="1" />
+      <input
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        required
+        aria-label="Email address"
+        class="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+      />
+      <button
+        type="submit"
+        class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+      >
+        Subscribe
+      </button>
+    </form>
+  </section>
+)}
