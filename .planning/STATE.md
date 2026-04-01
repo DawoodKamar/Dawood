@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 02-layout-navigation-02-PLAN.md
-last_updated: "2026-04-01T21:15:07.346Z"
-last_activity: 2026-04-01
+status: executing
+stopped_at: "Checkpoint reached: 03-01-PLAN.md Task 3 human-verify"
+last_updated: "2026-04-01T21:58:12.287Z"
+last_activity: 2026-04-01 -- Phase 03 execution started
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 6
+  completed_plans: 5
   percent: 0
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** A fast, readable blog that makes it effortless to publish and share writing — everything else serves that goal.
-**Current focus:** Phase 02 — layout-navigation
+**Current focus:** Phase 03 — pages-features
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-01
+Phase: 03 (pages-features) — EXECUTING
+Plan: 1 of 2
+Status: Executing Phase 03
+Last activity: 2026-04-01 -- Phase 03 execution started
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-foundation P02 | 4 | 2 tasks | 5 files |
 | Phase 02-layout-navigation P01 | 1 | 2 tasks | 5 files |
 | Phase 02-layout-navigation P02 | 11 | 2 tasks | 1 files |
+| Phase 03-pages-features P01 | 2 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,9 @@ Recent decisions affecting current work:
 - [Phase 02-layout-navigation]: Use astro:page-load (not DOMContentLoaded) for nav/hamburger scripts so they reinitialize after every SPA navigation
 - [Phase 02-layout-navigation]: Newsletter form uses disabled HTML attribute — placeholder only, no Buttondown API wiring (deferred to Phase 3)
 - [Phase 02-layout-navigation]: Use post.id (not post.slug) for blog post URLs — Astro 5 content layer uses id
+- [Phase 03-pages-features]: NewsletterSignup uses target=_blank for Buttondown thank-you page — simplest success feedback
+- [Phase 03-pages-features]: NewsletterSignup compact prop: false=full section with heading, true=form only for footer embed
+- [Phase 03-pages-features]: Blog post prev/next: posts[index+1]=Previous(older), posts[index-1]=Next(newer) — array is newest-first
 
 ### Pending Todos
 
@@ -90,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T21:11:52.500Z
-Stopped at: Completed 02-layout-navigation-02-PLAN.md
+Last session: 2026-04-01T21:58:02.453Z
+Stopped at: Checkpoint reached: 03-01-PLAN.md Task 3 human-verify
 Resume file: None

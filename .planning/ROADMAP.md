@@ -60,7 +60,7 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 03-01: Build blog listing page (`/blog`), individual post page (`/blog/[slug]`) using standalone `render()` from `astro:content`, `PostNavigation.astro`, and `NewsletterSignup.astro` component
+- [x] 03-01: Build blog listing page (`/blog`), individual post page (`/blog/[slug]`) using standalone `render()` from `astro:content`, `PostNavigation.astro`, and `NewsletterSignup.astro` component
 - [ ] 03-02: Build `/contact` page with `ContactForm.astro` (`data-netlify="true"`, `data-astro-reload`, honeypot), `src/pages/success.astro`, client-side validation, social links, and integrate `NewsletterSignup.astro` into site footer
 
 ### Phase 4: SEO & Polish
@@ -89,5 +89,5 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-04-01 |
 | 2. Layout & Navigation | 2/2 | Complete   | 2026-04-01 |
-| 3. Pages & Features | 0/2 | Not started | - |
+| 3. Pages & Features | 1/2 | In Progress|  |
 | 4. SEO & Polish | 0/2 | Not started | - |
