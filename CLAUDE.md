@@ -27,6 +27,10 @@ npx serve .
 
 Deployed via Netlify. Pushing to `main` triggers an automatic deploy. There is no build command; Netlify serves the files as-is.
 
+## Git Workflow
+
+**IMPORTANT: Never push to `main`. Always stay on the `redesign` branch.** All work must be committed to `redesign`. Do not switch branches or create PRs to `main` unless explicitly instructed by the user.
+
 ## Dark Mode
 
 Dark mode is toggled by adding/removing the `dark` class on `document.documentElement`. The preference is stored in `localStorage` under the key `theme`. CSS should use the `.dark` selector for dark variants.
