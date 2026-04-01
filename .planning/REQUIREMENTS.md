@@ -27,13 +27,13 @@
 
 ### Navigation & Layout
 
-- [ ] **NAV-01**: `BaseLayout.astro` wraps all pages with `<ClientRouter />` from `astro:transitions` for view transitions
-- [ ] **NAV-02**: `Navigation.astro` component: links to `/`, `/blog`, `/contact`; active page highlighted; mobile hamburger menu
-- [ ] **NAV-03**: `Footer.astro` component: copyright, nav links, social links (YouTube, LinkedIn); persistent on all pages
-- [ ] **NAV-04**: View transitions (crossfade or slide) between all pages; graceful fallback for unsupported browsers
-- [ ] **NAV-05**: Scripts using `DOMContentLoaded` or DOM queries migrated to `astro:page-load` event listener so they re-run after transitions
-- [ ] **NAV-06**: Dark mode FOUC prevention: synchronous `is:inline` head script on load + `astro:after-swap` listener to reapply theme class
-- [ ] **NAV-07**: Dark mode toggled via `.dark` class on `<html>`; preference stored in `localStorage`
+- [x] **NAV-01**: `BaseLayout.astro` wraps all pages with `<ClientRouter />` from `astro:transitions` for view transitions
+- [x] **NAV-02**: `Navigation.astro` component: links to `/`, `/blog`, `/contact`; active page highlighted; mobile hamburger menu
+- [x] **NAV-03**: `Footer.astro` component: copyright, nav links, social links (YouTube, LinkedIn); persistent on all pages
+- [x] **NAV-04**: View transitions (crossfade or slide) between all pages; graceful fallback for unsupported browsers
+- [x] **NAV-05**: Scripts using `DOMContentLoaded` or DOM queries migrated to `astro:page-load` event listener so they re-run after transitions
+- [x] **NAV-06**: Dark mode FOUC prevention: synchronous `is:inline` head script on load + `astro:after-swap` listener to reapply theme class
+- [x] **NAV-07**: Dark mode toggled via `.dark` class on `<html>`; preference stored in `localStorage`
 
 ### Homepage
 

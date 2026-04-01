@@ -43,7 +43,7 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 02-01: Build `BaseLayout.astro` with `<ClientRouter />` from `astro:transitions`, `is:inline` FOUC-prevention head script, `astro:after-swap` dark mode listener, and `Navigation.astro` + `Footer.astro` with `astro:page-load` event listeners
+- [x] 02-01: Build `BaseLayout.astro` with `<ClientRouter />` from `astro:transitions`, `is:inline` FOUC-prevention head script, `astro:after-swap` dark mode listener, and `Navigation.astro` + `Footer.astro` with `astro:page-load` event listeners
 - [ ] 02-02: Build all five homepage sections (hero, positioning, content pillars, featured posts, newsletter placeholder) wired to live collection data
 
 ### Phase 3: Pages & Features
@@ -88,6 +88,6 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-04-01 |
-| 2. Layout & Navigation | 0/2 | Not started | - |
+| 2. Layout & Navigation | 1/2 | In Progress|  |
 | 3. Pages & Features | 0/2 | Not started | - |
 | 4. SEO & Polish | 0/2 | Not started | - |
