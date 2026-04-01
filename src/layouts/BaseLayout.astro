@@ -1,0 +1,44 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Dawood Kamar — writing on AI, focus, and work." } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <ClientRouter />
+    <script is:inline>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+      document.addEventListener("astro:before-swap", function (event) {
+        var theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          event.newDocument.documentElement.classList.add("dark");
+        }
+      });
+    </script>
+  </head>
+  <body class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+    <Navigation />
+    <main class="mx-auto max-w-4xl px-4 py-8">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
