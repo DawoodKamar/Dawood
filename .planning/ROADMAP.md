@@ -23,7 +23,7 @@ Replace the existing vanilla HTML/CSS/JS portfolio with a full Astro 5.17 + Tail
   3. `src/content.config.ts` (not `src/content/config.ts`) defines the blog collection; `npx astro sync` generates TypeScript types with no errors.
   4. Three sample posts exist in `src/content/blog/` with valid frontmatter; a post marked `draft: true` does not appear in any collection query when `import.meta.env.PROD` is true.
   5. Reading time (`minutesRead`) is available on each post via `remarkPluginFrontmatter` — confirmed by logging it in a throwaway page.
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 01-01: Initialize Astro 5.17 project, configure Tailwind v4 via `@tailwindcss/vite`, update `netlify.toml`, set `site` URL and `output: "static"` in `astro.config.mjs`, export `SITE_URL` from `src/config.ts`
@@ -39,7 +39,7 @@ Plans:
   3. The hamburger menu opens and closes correctly after navigating away from the page it was first loaded on (i.e., the `astro:page-load` listener fires on every navigation).
   4. The active nav link is highlighted on each page.
   5. The homepage displays hero, positioning text, four content pillars, three most-recent non-draft post cards, and a newsletter signup form.
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: yes
 
 Plans:
@@ -56,7 +56,7 @@ Plans:
   3. The newsletter signup component appears in at least three locations (homepage, post footer, site footer) and submits to the Buttondown embed API endpoint — confirmed by a successful test subscription.
   4. Submitting the contact form on `/contact` redirects to `/success`; the form is visible in the Netlify dashboard after the first deploy (Netlify Forms detection confirmed).
   5. A draft post's URL (`/blog/[slug]`) is not generated in the production build — `getStaticPaths` filters drafts.
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: yes
 
 Plans:
@@ -74,7 +74,7 @@ Plans:
   4. `/rss.xml` is accessible and contains only published posts; `/robots.txt` references the sitemap URL.
   5. Lighthouse audit on the homepage and one blog post page scores 90+ across Performance, Accessibility, Best Practices, and SEO — no CLS from images, no render-blocking fonts.
   6. Site is fully usable and readable at 375px, 768px, and 1280px viewport widths; all tap targets are at least 44×44px.
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: yes
 
 Plans:
