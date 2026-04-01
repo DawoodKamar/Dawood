@@ -7,12 +7,12 @@
 
 ### Setup & Infrastructure
 
-- [ ] **SETUP-01**: Astro 5.17 project initialized with TypeScript, replacing existing vanilla HTML/CSS/JS files
-- [ ] **SETUP-02**: Tailwind CSS v4 integrated via `@tailwindcss/vite` (not deprecated `@astrojs/tailwind`)
-- [ ] **SETUP-03**: `@tailwindcss/typography` plugin configured in global CSS for blog post rendering
-- [ ] **SETUP-04**: `netlify.toml` updated with `command = "npm run build"` and `publish = "dist"`
-- [ ] **SETUP-05**: Environment variables configured for newsletter API key (not prefixed `PUBLIC_` — keep server-side)
-- [ ] **SETUP-06**: `astro.config.mjs` with `output: "static"`, `site` URL, sitemap integration, Tailwind Vite plugin
+- [x] **SETUP-01**: Astro 5.17 project initialized with TypeScript, replacing existing vanilla HTML/CSS/JS files
+- [x] **SETUP-02**: Tailwind CSS v4 integrated via `@tailwindcss/vite` (not deprecated `@astrojs/tailwind`)
+- [x] **SETUP-03**: `@tailwindcss/typography` plugin configured in global CSS for blog post rendering
+- [x] **SETUP-04**: `netlify.toml` updated with `command = "npm run build"` and `publish = "dist"`
+- [x] **SETUP-05**: Environment variables configured for newsletter API key (not prefixed `PUBLIC_` — keep server-side)
+- [x] **SETUP-06**: `astro.config.mjs` with `output: "static"`, `site` URL, sitemap integration, Tailwind Vite plugin
 
 ### Content Collections
 

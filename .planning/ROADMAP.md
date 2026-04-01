@@ -26,7 +26,7 @@ Replace the existing vanilla HTML/CSS/JS portfolio with a full Astro 5.17 + Tail
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Initialize Astro 5.17 project, configure Tailwind v4 via `@tailwindcss/vite`, update `netlify.toml`, set `site` URL and `output: "static"` in `astro.config.mjs`, export `SITE_URL` from `src/config.ts`
+- [x] 01-01: Initialize Astro 5.17 project, configure Tailwind v4 via `@tailwindcss/vite`, update `netlify.toml`, set `site` URL and `output: "static"` in `astro.config.mjs`, export `SITE_URL` from `src/config.ts`
 - [ ] 01-02: Define `src/content.config.ts` with Zod blog schema (title, date, description, category enum, tags, draft), install `remarkReadingTime` plugin, create three sample posts
 
 ### Phase 2: Layout & Navigation
@@ -87,7 +87,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Not started | - |
+| 1. Foundation | 1/2 | In Progress|  |
 | 2. Layout & Navigation | 0/2 | Not started | - |
 | 3. Pages & Features | 0/2 | Not started | - |
 | 4. SEO & Polish | 0/2 | Not started | - |
