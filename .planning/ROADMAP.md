@@ -90,4 +90,4 @@ Plans:
 | 1. Foundation | 2/2 | Complete    | 2026-04-01 |
 | 2. Layout & Navigation | 2/2 | Complete   | 2026-04-01 |
 | 3. Pages & Features | 2/2 | Complete   | 2026-04-02 |
-| 4. SEO & Polish | 2/2 | Complete   | 2026-04-02 |
+| 4. SEO & Polish | 3/3 | Complete   | 2026-04-02 |

@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-04-02T08:49:23.952Z"
+status: executing
+stopped_at: Completed 04-03-PLAN.md
+last_updated: "2026-04-02T09:52:17.827Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 4
   completed_phases: 4
-  total_plans: 8
-  completed_plans: 8
+  total_plans: 9
+  completed_plans: 9
   percent: 0
 ---
 
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 ## Current Position
 
 Phase: 04 (seo-polish) — EXECUTING
-Plan: 2 of 2
-Status: Phase complete — ready for verification
+Plan: 2 of 3
+Status: Ready to execute
 Last activity: 2026-04-02
 
 Progress: [░░░░░░░░░░] 0%
@@ -60,6 +60,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-pages-features P02 | 2 | 2 tasks | 5 files |
 | Phase 04 P01 | 109s | 2 tasks | 9 files |
 | Phase 04 P02 | 108s | 2 tasks | 5 files |
+| Phase 04-seo-polish P03 | 2min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -94,6 +95,8 @@ Recent decisions affecting current work:
 - [Phase 04-01]: Use named head slot in BaseLayout for per-page head injections (ArticleJsonLd)
 - [Phase 04]: Task 1 image/font audit was a no-op: zero raw img tags, no Google Fonts — SEO-07, SEO-08, SEO-09 trivially satisfied
 - [Phase 04]: Tap target pattern: desktop links min-h-[44px], block links py-3, icon buttons p-3 for 44px WCAG minimum
+- [Phase 04-seo-polish]: Remove mobile theme toggle entirely — desktop header toggle always visible
+- [Phase 04-seo-polish]: Use new URL(image, Astro.site).toString() for og:image absolute URL resolution in BaseHead
 
 ### Pending Todos
 
@@ -105,6 +108,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T08:49:23.949Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-04-02T09:52:17.824Z
+Stopped at: Completed 04-03-PLAN.md
 Resume file: None
