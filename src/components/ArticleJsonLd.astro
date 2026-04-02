@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  url: string;
+  authorName: string;
+}
+
+const { title, description, publishDate, url, authorName } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description: description,
+  datePublished: publishDate.toISOString(),
+  url: url,
+  author: {
+    "@type": "Person",
+    name: authorName,
+  },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleJsonLd from "../../components/ArticleJsonLd.astro";
 import { getCollection, render } from "astro:content";
 import PostNavigation from "../../components/PostNavigation.astro";
 import NewsletterSignup from "../../components/NewsletterSignup.astro";
+import { SITE_URL } from "../../config";
 
 export async function getStaticPaths() {
   const posts = (
@@ -27,6 +29,14 @@ const minutesRead = remarkPluginFrontmatter.minutesRead;
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
+  <ArticleJsonLd
+    slot="head"
+    title={post.data.title}
+    description={post.data.description}
+    publishDate={post.data.date}
+    url={`${SITE_URL}/blog/${post.id}/`}
+    authorName="Dawood Kamar"
+  />
   <article>
     <header class="mb-8">
       <h1 class="text-3xl font-bold md:text-4xl">{post.data.title}</h1>
