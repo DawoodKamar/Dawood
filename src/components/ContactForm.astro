@@ -1,0 +1,78 @@
+<form name="contact" method="POST" action="/success/" data-netlify="true" netlify-honeypot="bot-field" data-astro-reload class="mt-8 space-y-6">
+  <input type="hidden" name="form-name" value="contact" />
+
+  <p class="hidden" aria-hidden="true">
+    <label>Do not fill this field: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <div>
+    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+    <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+    <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+    <textarea id="message" name="message" rows="5" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"></textarea>
+  </div>
+
+  <button type="submit" class="rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700">Send Message</button>
+</form>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const form = document.querySelector('form[name="contact"]') as HTMLFormElement | null;
+    if (!form) return;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      // Clear previous error messages
+      form.querySelectorAll(".contact-form-error").forEach((el) => el.remove());
+      form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
+
+      let hasErrors = false;
+
+      const nameInput = form.querySelector<HTMLInputElement>("#name");
+      const emailInput = form.querySelector<HTMLInputElement>("#email");
+      const messageInput = form.querySelector<HTMLTextAreaElement>("#message");
+
+      function showError(input: HTMLInputElement | HTMLTextAreaElement, message: string) {
+        input.setAttribute("aria-invalid", "true");
+        const error = document.createElement("p");
+        error.className = "contact-form-error mt-1 text-sm text-red-600";
+        error.textContent = message;
+        input.insertAdjacentElement("afterend", error);
+      }
+
+      if (nameInput && nameInput.value.trim().length === 0) {
+        showError(nameInput, "Name is required.");
+        hasErrors = true;
+      }
+
+      if (emailInput) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailInput.value.trim().length === 0) {
+          showError(emailInput, "Email is required.");
+          hasErrors = true;
+        } else if (!emailRegex.test(emailInput.value.trim())) {
+          showError(emailInput, "Please enter a valid email address.");
+          hasErrors = true;
+        }
+      }
+
+      if (messageInput && messageInput.value.trim().length === 0) {
+        showError(messageInput, "Message is required.");
+        hasErrors = true;
+      }
+
+      if (!hasErrors) {
+        form.submit();
+      }
+    });
+  });
+</script>

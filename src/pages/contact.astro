@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
+---
+
+<BaseLayout title="Contact — Dawood Kamar" description="Get in touch with Dawood Kamar.">
+
+  <h1 class="text-3xl font-bold md:text-4xl">Contact</h1>
+  <p class="mt-4 text-gray-600 dark:text-gray-400">Have a question, idea, or just want to say hello? Send me a message or find me on social media.</p>
+  <p class="mt-2"><a href="mailto:hello@dawoodkamar.com" class="text-blue-600 hover:underline dark:text-blue-400">hello@dawoodkamar.com</a></p>
+
+  <ContactForm />
+
+  <div class="mt-12 border-t border-gray-200 pt-8 dark:border-gray-800">
+    <h2 class="text-xl font-semibold">Find Me Online</h2>
+    <div class="mt-4 flex gap-4">
+      <a href="https://youtube.com/@dawoodkamar" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-gray-200 px-4 py-2 text-sm hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800">YouTube</a>
+      <a href="https://linkedin.com/in/dawood-kamar" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-gray-200 px-4 py-2 text-sm hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800">LinkedIn</a>
+    </div>
+  </div>
+
+</BaseLayout>
