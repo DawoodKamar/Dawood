@@ -45,20 +45,20 @@
 
 ### Blog
 
-- [ ] **BLOG-01**: Blog listing page (`/blog`) showing all non-draft posts in reverse chronological order
-- [ ] **BLOG-02**: Post cards display: title, excerpt (from `description` frontmatter), date, estimated reading time, category tag
-- [ ] **BLOG-03**: Individual post pages (`/blog/[slug]`) using `getStaticPaths` and standalone `render()` import from `astro:content`
-- [ ] **BLOG-04**: Full markdown rendering: headings, paragraphs, lists, code blocks, blockquotes, images, links — styled via `@tailwindcss/typography`
-- [ ] **BLOG-05**: Previous/Next post navigation at bottom of each post (sorted by date)
-- [ ] **BLOG-06**: Newsletter signup component at the end of each post
-- [ ] **BLOG-07**: Category tags displayed on post cards and individual post pages
+- [x] **BLOG-01**: Blog listing page (`/blog`) showing all non-draft posts in reverse chronological order
+- [x] **BLOG-02**: Post cards display: title, excerpt (from `description` frontmatter), date, estimated reading time, category tag
+- [x] **BLOG-03**: Individual post pages (`/blog/[slug]`) using `getStaticPaths` and standalone `render()` import from `astro:content`
+- [x] **BLOG-04**: Full markdown rendering: headings, paragraphs, lists, code blocks, blockquotes, images, links — styled via `@tailwindcss/typography`
+- [x] **BLOG-05**: Previous/Next post navigation at bottom of each post (sorted by date)
+- [x] **BLOG-06**: Newsletter signup component at the end of each post
+- [x] **BLOG-07**: Category tags displayed on post cards and individual post pages
 
 ### Newsletter
 
-- [ ] **NEWS-01**: `NewsletterSignup.astro` reusable component — form POSTs directly to Buttondown embed API endpoint (`https://buttondown.com/api/emails/embed-subscribe/{username}`)
-- [ ] **NEWS-02**: Email validation on input (HTML5 `type="email"` + required)
-- [ ] **NEWS-03**: Success/error feedback (redirect to thank-you page or inline state)
-- [ ] **NEWS-04**: Component used in ≥3 locations: homepage section, end of each blog post, site footer
+- [x] **NEWS-01**: `NewsletterSignup.astro` reusable component — form POSTs directly to Buttondown embed API endpoint (`https://buttondown.com/api/emails/embed-subscribe/{username}`)
+- [x] **NEWS-02**: Email validation on input (HTML5 `type="email"` + required)
+- [x] **NEWS-03**: Success/error feedback (redirect to thank-you page or inline state)
+- [x] **NEWS-04**: Component used in ≥3 locations: homepage section, end of each blog post, site footer
 
 ### Contact Page
 
