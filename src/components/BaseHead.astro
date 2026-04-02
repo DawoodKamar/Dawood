@@ -2,11 +2,12 @@
 interface Props {
   title: string;
   description: string;
-  image?: string; // absolute URL — defaults to og-default.png placeholder
+  image?: string; // path or absolute URL — resolved to absolute via Astro.site
 }
 
 const { title, description, image = '/og-default.png' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site).toString();
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,13 +20,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-{image && <meta property="og:image" content={image} />}
+{image && <meta property="og:image" content={imageURL} />}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-{image && <meta name="twitter:image" content={image} />}
+{image && <meta name="twitter:image" content={imageURL} />}
 
 <!-- RSS autodiscovery -->
 <link rel="alternate" type="application/rss+xml" title="Dawood Kamar" href="/rss.xml" />

@@ -75,17 +75,6 @@ const navLinks = [
           </a>
         </li>
       ))}
-      <li>
-        <button
-          id="mobile-theme-toggle"
-          type="button"
-          aria-label="Toggle dark mode"
-          class="flex items-center gap-2 py-3 hover:text-blue-600 dark:hover:text-blue-400"
-        >
-          <span class="dark:hidden">🌙 Dark mode</span>
-          <span class="hidden dark:inline">☀️ Light mode</span>
-        </button>
-      </li>
     </ul>
   </div>
 </header>
@@ -95,7 +84,6 @@ const navLinks = [
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
     const themeToggle = document.getElementById("theme-toggle");
-    const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
 
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener("click", () => {
@@ -112,9 +100,6 @@ const navLinks = [
 
     if (themeToggle) {
       themeToggle.addEventListener("click", toggleTheme);
-    }
-    if (mobileThemeToggle) {
-      mobileThemeToggle.addEventListener("click", toggleTheme);
     }
   });
 </script>
