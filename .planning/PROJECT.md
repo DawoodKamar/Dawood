@@ -38,13 +38,13 @@ A fast, readable blog that makes it effortless to publish and share writing — 
 - ✓ Previous/Next post navigation on individual post pages — Validated in Phase 3: Pages & Features
 - ✓ Contact page with Netlify Forms (Name, Email, Message) + client-side validation + success page — Validated in Phase 3: Pages & Features
 - ✓ Newsletter integration via Buttondown embed (dawoodkamar) — Validated in Phase 3: Pages & Features
-- [ ] Fully responsive (mobile-first, min 16px body text)
-- [ ] Lighthouse 90+ across all categories
-- [ ] Semantic HTML + meta tags (title, description, og:*) per page
-- [ ] Article structured data (schema.org) on blog posts
-- [ ] Sitemap (`/sitemap.xml`), RSS feed (`/rss.xml`), `robots.txt`
-- [ ] Canonical URLs on all pages
-- [ ] Netlify Forms enabled for contact form
+- ✓ Fully responsive (mobile-first, min 16px body text) — Validated in Phase 4: SEO & Polish
+- ✓ Lighthouse 90+ across all categories — Validated in Phase 4: SEO & Polish (human UAT pending)
+- ✓ Semantic HTML + meta tags (title, description, og:*) per page — Validated in Phase 4: SEO & Polish
+- ✓ Article structured data (schema.org) on blog posts — Validated in Phase 4: SEO & Polish
+- ✓ Sitemap (`/sitemap.xml`), RSS feed (`/rss.xml`), `robots.txt` — Validated in Phase 4: SEO & Polish
+- ✓ Canonical URLs on all pages — Validated in Phase 4: SEO & Polish
+- ✓ Netlify Forms enabled for contact form — Validated in Phase 3: Pages & Features
 
 ### Out of Scope
 
@@ -102,4 +102,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-02 after Phase 3: Pages & Features complete*
+*Last updated: 2026-04-02 after Phase 4: SEO & Polish complete*
