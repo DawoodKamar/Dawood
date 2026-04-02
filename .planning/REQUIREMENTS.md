@@ -71,12 +71,12 @@
 
 ### SEO & Performance
 
-- [ ] **SEO-01**: `BaseHead.astro` component with props: `title`, `description`, `image`; generates `<title>`, `<meta name="description">`, `og:title`, `og:description`, `og:image`, canonical URL
-- [ ] **SEO-02**: Canonical URLs via `new URL(Astro.url.pathname, Astro.site)` — `site` config is mandatory in `astro.config.mjs`; export `SITE_URL` from `src/config.ts` as fallback for `getStaticPaths` regression
-- [ ] **SEO-03**: Article JSON-LD structured data on blog post pages using `<script type="application/ld+json" set:html={JSON.stringify(schema)} />`
-- [ ] **SEO-04**: `@astrojs/sitemap` configured — sitemap auto-excludes draft posts via filter callback
-- [ ] **SEO-05**: RSS feed at `/rss.xml` via `@astrojs/rss` — excludes draft posts
-- [ ] **SEO-06**: `public/robots.txt` with sitemap URL reference
+- [x] **SEO-01**: `BaseHead.astro` component with props: `title`, `description`, `image`; generates `<title>`, `<meta name="description">`, `og:title`, `og:description`, `og:image`, canonical URL
+- [x] **SEO-02**: Canonical URLs via `new URL(Astro.url.pathname, Astro.site)` — `site` config is mandatory in `astro.config.mjs`; export `SITE_URL` from `src/config.ts` as fallback for `getStaticPaths` regression
+- [x] **SEO-03**: Article JSON-LD structured data on blog post pages using `<script type="application/ld+json" set:html={JSON.stringify(schema)} />`
+- [x] **SEO-04**: `@astrojs/sitemap` configured — sitemap auto-excludes draft posts via filter callback
+- [x] **SEO-05**: RSS feed at `/rss.xml` via `@astrojs/rss` — excludes draft posts
+- [x] **SEO-06**: `public/robots.txt` with sitemap URL reference
 - [ ] **SEO-07**: All images use `<Image />` from `astro:assets` with explicit width/height to prevent CLS
 - [ ] **SEO-08**: Hero/above-fold images use `loading="eager"` and `fetchpriority="high"`
 - [ ] **SEO-09**: Google Fonts loaded with `display=swap` + preconnect, or via Astro Fonts API

@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 03-02-PLAN.md
-last_updated: "2026-04-02T06:55:08.353Z"
+status: executing
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-04-02T08:45:52.270Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 4
   completed_phases: 3
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 8
+  completed_plans: 7
   percent: 0
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** A fast, readable blog that makes it effortless to publish and share writing — everything else serves that goal.
-**Current focus:** Phase 03 — pages-features
+**Current focus:** Phase 04 — seo-polish
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 04 (seo-polish) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-04-02
 
 Progress: [░░░░░░░░░░] 0%
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-layout-navigation P02 | 11 | 2 tasks | 1 files |
 | Phase 03-pages-features P01 | 2 | 2 tasks | 4 files |
 | Phase 03-pages-features P02 | 2 | 2 tasks | 5 files |
+| Phase 04 P01 | 109s | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,9 @@ Recent decisions affecting current work:
 - [Phase 03-pages-features]: Contact form uses data-astro-reload to bypass view transitions for Netlify Forms POST redirect to /success/
 - [Phase 03-pages-features]: Client-side form validation uses astro:page-load pattern (consistent with Navigation.astro) to reinitialize after SPA navigation
 - [Phase 03-pages-features]: Netlify Forms requires both data-netlify=true AND hidden form-name input for static site POST detection
+- [Phase 04-01]: Use set:html for JSON-LD to avoid Astro HTML-escaping double-quotes into &quot;
+- [Phase 04-01]: Use context.site in RSS endpoint (not SITE_URL import) — correct source from astro.config.mjs site field
+- [Phase 04-01]: Use named head slot in BaseLayout for per-page head injections (ArticleJsonLd)
 
 ### Pending Todos
 
@@ -98,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T06:01:02.157Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-04-02T08:45:52.267Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None

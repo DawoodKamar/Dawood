@@ -78,7 +78,7 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 04-01: Build `BaseHead.astro` (title, description, OG tags, canonical via `Astro.site` + `SITE_URL` fallback), `ArticleJsonLd.astro` using `set:html`, configure `@astrojs/sitemap` with draft filter, `@astrojs/rss` feed excluding drafts, `public/robots.txt` referencing sitemap
+- [x] 04-01: Build `BaseHead.astro` (title, description, OG tags, canonical via `Astro.site` + `SITE_URL` fallback), `ArticleJsonLd.astro` using `set:html`, configure `@astrojs/sitemap` with draft filter, `@astrojs/rss` feed excluding drafts, `public/robots.txt` referencing sitemap
 - [ ] 04-02: Audit and fix all Lighthouse regressions — replace any raw `<img>` with `<Image />` from `astro:assets`, set `loading="eager"` on hero images, configure font loading with `display=swap` + preconnect, verify responsive layout at all three breakpoints
 
 ## Progress
@@ -90,4 +90,4 @@ Plans:
 | 1. Foundation | 2/2 | Complete    | 2026-04-01 |
 | 2. Layout & Navigation | 2/2 | Complete   | 2026-04-01 |
 | 3. Pages & Features | 2/2 | Complete   | 2026-04-02 |
-| 4. SEO & Polish | 0/2 | Not started | - |
+| 4. SEO & Polish | 1/2 | In Progress|  |
