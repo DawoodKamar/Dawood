@@ -39,6 +39,7 @@ key-decisions:
   - "Contact form uses data-astro-reload to bypass view transitions on native form.submit() — required for Netlify Forms POST redirect to /success/"
   - "Client-side validation uses astro:page-load pattern (consistent with Navigation.astro) to reinitialize after SPA navigation"
   - "NewsletterSignup compact version placed above footer border-top div — appears on every page"
+  - "Deduplication: removed inline newsletter form from blog post pages (duplicate of site footer); footer compact skipped on homepage since Section 5 already has full-form NewsletterSignup"
 
 patterns-established:
   - "Pattern: Netlify Forms requires both data-netlify=true and hidden form-name input for static site detection"
@@ -60,7 +61,7 @@ completed: 2026-04-02
 - **Duration:** 2 min
 - **Started:** 2026-04-02T05:48:25Z
 - **Completed:** 2026-04-02T05:50:00Z
-- **Tasks:** 2 of 3 complete (Task 3 is checkpoint:human-verify — awaiting browser verification)
+- **Tasks:** 3 of 3 complete
 - **Files modified:** 5
 
 ## Accomplishments
@@ -77,7 +78,9 @@ Each task was committed atomically:
 
 1. **Task 1: Create ContactForm.astro, contact page, and success page** - `f10e176` (feat)
 2. **Task 2: Integrate NewsletterSignup into site footer and replace homepage placeholder** - `2b1e9b0` (feat)
-3. **Task 3: Verify in browser** - checkpoint:human-verify (awaiting)
+3. **Task 3: Verify contact form, newsletter integration, and full site in browser** - human-approved (checkpoint:human-verify passed)
+
+**Deduplication fix (during verification):** `41fa9d6` (fix) — removed duplicate newsletter forms: inline form removed from blog post pages, footer compact newsletter skipped on homepage since Section 5 already has full form
 
 ## Files Created/Modified
 - `src/components/ContactForm.astro` - Netlify Forms component with honeypot, validation, astro:page-load script
@@ -93,7 +96,20 @@ Each task was committed atomically:
 
 ## Deviations from Plan
 
-None - plan executed exactly as written.
+### Auto-fixed Issues
+
+**1. [Rule 1 - Bug] Removed duplicate newsletter forms discovered during browser verification**
+- **Found during:** Task 3 (browser verification)
+- **Issue:** Blog post pages showed the newsletter form twice — once inline at the bottom of each post (from the post template) and once in the compact site footer. On the homepage, Section 5 full-form NewsletterSignup and a compact footer form also duplicated the signup flow.
+- **Fix:** Removed inline newsletter form from blog post page template; suppressed compact footer NewsletterSignup on the homepage (footer skipped on homepage only) since Section 5 already renders the full-version component.
+- **Files modified:** src/pages/blog/[...slug].astro, src/components/Footer.astro (or src/pages/index.astro)
+- **Verification:** Human verified in browser — forms no longer duplicated on any page
+- **Committed in:** `41fa9d6` (fix)
+
+---
+
+**Total deviations:** 1 auto-fixed (1 visual bug / UX duplication)
+**Impact on plan:** Fix improves UX without changing functionality. Newsletter still appears in correct locations (homepage section, blog post area, site footer on interior pages).
 
 ## Issues Encountered
 None
@@ -105,7 +121,7 @@ None — no new external service configuration required. Netlify Forms activatio
 - **Buttondown username** in `src/components/NewsletterSignup.astro` (carried from 03-01): Uses `dawoodkamar` — needs confirmation against actual Buttondown account slug before going live.
 
 ## Status
-**CHECKPOINT REACHED** — Tasks 1 and 2 complete and committed. Task 3 (checkpoint:human-verify) awaiting browser verification.
+**COMPLETE** — All 3 tasks executed and human verification approved. Deduplication fix applied and committed.
 
 ## Next Phase Readiness
 - Contact page built and passing build — ready to verify in browser
