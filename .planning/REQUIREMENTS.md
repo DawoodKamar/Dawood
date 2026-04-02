@@ -79,7 +79,7 @@
 - [x] **SEO-06**: `public/robots.txt` with sitemap URL reference
 - [x] **SEO-07**: All images use `<Image />` from `astro:assets` with explicit width/height to prevent CLS
 - [x] **SEO-08**: Hero/above-fold images use `loading="eager"` and `fetchpriority="high"`
-- [x] **SEO-09**: Google Fonts loaded with `display=swap` + preconnect, or via Astro Fonts API
+- [x] **SEO-09**: No render-blocking fonts — system font stack used (no web font loading); if web fonts are added later, use `display=swap` + preconnect
 - [x] **SEO-10**: Lighthouse score ≥90 across all categories on homepage and a blog post page
 
 ### Responsive Design
