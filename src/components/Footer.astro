@@ -1,9 +1,10 @@
 ---
 import NewsletterSignup from "./NewsletterSignup.astro";
 const isHome = Astro.url.pathname === "/";
+const isBlogPost = Astro.url.pathname.startsWith("/blog/") && Astro.url.pathname !== "/blog/";
 ---
 
-{!isHome && <div class="mx-auto max-w-4xl px-4 pt-8"><NewsletterSignup compact /></div>}
+{!isHome && !isBlogPost && <div class="mx-auto max-w-4xl px-4 pt-8"><NewsletterSignup compact /></div>}
 <footer class="border-t border-gray-200 dark:border-gray-800">
   <div class="mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 py-8 md:flex-row md:justify-between">
     <p class="text-sm text-gray-500 dark:text-gray-400">
