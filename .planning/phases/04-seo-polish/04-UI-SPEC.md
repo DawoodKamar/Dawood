@@ -71,7 +71,7 @@ Extracted from existing source (BaseLayout.astro, index.astro, [id].astro, Foote
 
 **Weight contract:** Exactly 2 declared weights:
 - 400 regular (`font-normal`) — body copy, labels, descriptions
-- 700 bold (`font-bold`) — headings, display, CTA button labels, active nav links use `font-semibold` (600) as the only permitted exception
+- 700 bold (`font-bold`) — headings, display, CTA button labels, active nav links
 
 ---
 
@@ -136,6 +136,14 @@ All tappable elements must have a minimum hit area of 44×44px.
 | Newsletter submit button | Not audited — add `min-h-[44px]` | Confirm in Plan 04-02 |
 | Contact form submit button | Not audited | Confirm `min-h-[44px]` in Plan 04-02 |
 | Prev/next post navigation | Not audited | Confirm `min-h-[44px]` in Plan 04-02 |
+
+### Accessible Labels for Icon-Only Interactive Elements
+Icon-only buttons must carry an `aria-label` so screen readers and Lighthouse accessibility audits pass.
+
+| Element | Required `aria-label` |
+|---------|----------------------|
+| Theme toggle button | `aria-label="Toggle dark mode"` |
+| Hamburger button | `aria-label="Open navigation menu"` |
 
 ### Image Handling Contract (SEO-07, SEO-08, RESP-04)
 - All `<img>` tags replaced with `<Image />` from `astro:assets`. Raw `<img>` produces no srcset and causes CLS.
