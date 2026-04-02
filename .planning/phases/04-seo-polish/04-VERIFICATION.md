@@ -1,52 +1,50 @@
 ---
 phase: 04-seo-polish
-verified: 2026-04-02T09:00:00Z
-status: gaps_found
-score: 10/14 requirements verified
-re_verification: false
-gaps:
-  - truth: "og:image resolves correctly for social crawlers on all pages"
-    status: failed
-    reason: "og:image and twitter:image are set to the relative path '/og-default.png' in built HTML. OG spec and all major social crawlers (Facebook, Twitter/X, LinkedIn, Slack) require an absolute URL. The relative path will not resolve when crawlers fetch the meta tag from external contexts."
-    artifacts:
-      - path: "src/components/BaseHead.astro"
-        issue: "Default image value is '/og-default.png' (relative). The comment says 'absolute URL' but the default is relative. No URL resolution against Astro.site is applied to the image prop."
-    missing:
-      - "Resolve image to an absolute URL in BaseHead.astro: use `new URL(image, Astro.site).toString()` when image begins with '/'"
-  - truth: "All interactive elements meet 44x44px tap target minimum (RESP-03)"
-    status: partial
-    reason: "Contact page social links (YouTube, LinkedIn in the 'Find Me Online' section of contact.astro) use 'py-2' (8px top + 8px bottom = 16px padding + ~20px text-sm = ~36px total height) — below the 44px WCAG 2.5.5 minimum. These links were not in the 04-02 plan's scope, which only covered Navigation, Footer, PostNavigation, NewsletterSignup, and ContactForm."
-    artifacts:
-      - path: "src/pages/contact.astro"
-        issue: "YouTube and LinkedIn anchor elements use class 'rounded-lg border border-gray-200 px-4 py-2 text-sm ...' — py-2 gives ~36px total height, not 44px."
-    missing:
-      - "Change py-2 to py-3 on both social link anchors in contact.astro 'Find Me Online' section"
-  - truth: "SEO-09: No render-blocking fonts (requirement as written in REQUIREMENTS.md)"
-    status: partial
-    reason: "REQUIREMENTS.md SEO-09 states 'Google Fonts loaded with display=swap + preconnect, or via Astro Fonts API'. The implementation uses system fonts with no web font loaded at all. The plan notes explicitly decided system fonts trivially satisfy this, but the requirement as written specifies a web font approach. This is an interpretation discrepancy — the site has no render-blocking fonts (better than required) but does not meet the literal requirement text."
-    artifacts:
-      - path: "src/styles/global.css"
-        issue: "No font declarations present. Requirement says fonts must use display=swap; implementation uses no custom fonts at all."
-    missing:
-      - "Clarify with site owner: accept system fonts as satisfying SEO-09 (update REQUIREMENTS.md to reflect intent), OR add a web font with display=swap + preconnect as written."
+verified: 2026-04-02T12:00:00Z
+status: human_needed
+score: 12/14 must-haves verified
+re_verification: true
+re_verification_meta:
+  previous_status: gaps_found
+  previous_score: 10/14
+  gaps_closed:
+    - "og:image and twitter:image now output absolute URL (https://dawoodkamar.com/og-default.png) via new URL(image, Astro.site) in BaseHead.astro"
+    - "Contact page social links (YouTube, LinkedIn) now use py-3 — confirmed py-3 class on both anchors in dist/contact/index.html"
+    - "REQUIREMENTS.md SEO-09 updated to reflect system font implementation: 'No render-blocking fonts — system font stack used'"
+    - "Mobile hamburger dropdown no longer contains redundant theme toggle (mobile-theme-toggle absent from dist/index.html)"
+  gaps_remaining: []
+  regressions: []
 human_verification:
   - test: "Lighthouse ≥90 on all four categories (SEO-10)"
     expected: "Homepage and one blog post page both score ≥90 on Performance, Accessibility, Best Practices, and SEO in Chrome Lighthouse."
-    why_human: "Cannot run Lighthouse programmatically without a live server and headless Chrome. Tap target and aria-label fixes are confirmed in code; actual Lighthouse scores can only be measured by running the audit."
+    why_human: "Cannot run Lighthouse programmatically without a live server and headless Chrome. All code preconditions satisfied: aria-labels correct, tap targets ≥44px, no raw img tags, no render-blocking fonts, JSON-LD present, canonical tags absolute."
   - test: "Responsive layout at 375px, 768px, 1280px (RESP-01)"
     expected: "At 375px: hamburger menu visible, single-column layout, no horizontal overflow, all text readable. At 768px: desktop nav visible, no hamburger. At 1280px: full-width layout within max-w-4xl constraint, footer in single-row layout."
     why_human: "Visual layout correctness at specific breakpoints cannot be verified by code inspection alone. Requires loading dist/index.html in a browser and testing with DevTools responsive mode."
-  - test: "og:image displays correctly on social share previews"
-    expected: "When a page URL is shared on Twitter/X, LinkedIn, or Facebook, the og:image thumbnail appears. Currently /og-default.png is a 1x1 white placeholder — even after fixing the absolute URL issue, the image will appear blank until replaced with a real 1200x630px branded image."
-    why_human: "Social card preview requires testing against each platform's card validator (Twitter Card Validator, Facebook Sharing Debugger, LinkedIn Post Inspector). The 1x1 placeholder is a known stub documented in SUMMARY."
+  - test: "Social share preview (og:image)"
+    expected: "When a page URL is shared on Twitter/X, LinkedIn, or Facebook, the og:image thumbnail appears. The og:image is now an absolute URL (https://dawoodkamar.com/og-default.png) but the image itself is a 1x1 white placeholder until replaced with a real 1200x630px branded image."
+    why_human: "Social card preview requires testing against each platform's card validator (Twitter Card Validator, Facebook Sharing Debugger, LinkedIn Post Inspector) with a deployed URL."
 ---
 
 # Phase 4: SEO & Polish Verification Report
 
-**Phase Goal:** Every page has correct OG/canonical metadata; sitemap, RSS, and robots.txt are live; Lighthouse ≥90 on all four categories; all tap targets ≥44×44px; layout correct at 375px, 768px, and 1280px.
-**Verified:** 2026-04-02T09:00:00Z
-**Status:** gaps_found
-**Re-verification:** No — initial verification
+**Phase Goal:** Every page has correct OG/canonical metadata; sitemap, RSS, and robots.txt are live; Lighthouse ≥90 on all four categories; all tap targets ≥44x44px; layout correct at 375px, 768px, and 1280px.
+**Verified:** 2026-04-02T12:00:00Z
+**Status:** human_needed
+**Re-verification:** Yes — after gap closure (plan 04-03)
+
+---
+
+## Re-verification Summary
+
+Previous status: `gaps_found` (10/14). This re-verification confirms all three programmatic gaps from 04-03 are closed. No regressions introduced. Two items remain in human_needed status (unchanged from initial verification — they require a browser/Lighthouse run and are not blockers introduced by the gap closure).
+
+**Gaps closed:**
+
+1. `BaseHead.astro` — `imageURL = new URL(image, Astro.site).toString()` confirmed at line 10; built HTML confirms `content="https://dawoodkamar.com/og-default.png"` on every page.
+2. `contact.astro` — Both social link anchors confirmed using `py-3` in source (line 17-18) and in built `dist/contact/index.html`.
+3. `REQUIREMENTS.md` — SEO-09 now reads "No render-blocking fonts — system font stack used (no web font loading); if web fonts are added later, use `display=swap` + preconnect".
+4. `Navigation.astro` — `mobile-theme-toggle` absent from `dist/index.html` (grep exit 1); mobile menu contains only nav links.
 
 ---
 
@@ -56,22 +54,22 @@ human_verification:
 
 | # | Truth | Status | Evidence |
 |---|-------|--------|----------|
-| 1 | Every page has OG title, description, canonical URL | VERIFIED | `dist/index.html`, all 6 built pages contain `og:title`, `og:description`, `og:url`, `canonical` — confirmed in built output |
-| 2 | og:image present on all pages | VERIFIED (with caveat) | All pages output `og:image` and `twitter:image` tags; value is `/og-default.png` (relative path — see gap 1) |
-| 3 | Sitemap live at /sitemap-index.xml with draft post excluded | VERIFIED | `dist/sitemap-index.xml` points to `sitemap-0.xml`; sitemap-0.xml lists 6 URLs (homepage, blog index, 2 published posts, contact, success); switzerland-ambition (draft:true) correctly excluded |
-| 4 | RSS feed live at /rss.xml with draft filter | VERIFIED | `dist/rss.xml` contains 2 published posts (ai-noise, focus-advantage); switzerland-ambition absent; uses `context.site` for URLs |
+| 1 | Every page has OG title, description, canonical URL | VERIFIED | All 6 built pages contain `og:title`, `og:description`, `og:url`, `canonical` — confirmed in built output |
+| 2 | og:image present on all pages as absolute URL | VERIFIED | Built HTML: `content="https://dawoodkamar.com/og-default.png"` on homepage, blog post, and contact pages — absolute URL confirmed |
+| 3 | Sitemap live at /sitemap-index.xml with draft posts excluded | VERIFIED | `dist/sitemap-index.xml` and `dist/sitemap-0.xml` present; switzerland-ambition absent from sitemap |
+| 4 | RSS feed live at /rss.xml with draft filter | VERIFIED | `dist/rss.xml` contains 2 published posts; switzerland-ambition absent |
 | 5 | robots.txt live with sitemap reference | VERIFIED | `dist/robots.txt`: `User-agent: *`, `Allow: /`, `Sitemap: https://dawoodkamar.com/sitemap-index.xml` |
-| 6 | Article JSON-LD on blog post pages (unescaped quotes) | VERIFIED | Both post pages contain `<script type="application/ld+json">` with valid `@type: BlogPosting`; quotes are unescaped (correct `set:html` usage confirmed) |
-| 7 | No raw img tags in built HTML | VERIFIED | `grep -r '<img ' dist/` returns zero matches |
-| 8 | No render-blocking fonts | VERIFIED | No `fonts.googleapis.com` in any source file; system font stack only; zero `@font-face` declarations in global.css |
-| 9 | og:image uses absolute URL for social crawlers | FAILED | Built HTML outputs `content="/og-default.png"` — relative path. Facebook/Twitter/LinkedIn require absolute URL. BaseHead.astro default is `'/og-default.png'` with no URL resolution. |
-| 10 | All tap targets ≥44×44px | PARTIAL | Nav desktop links (`min-h-[44px]`), mobile links (`py-3`), icon buttons (`p-3`), footer links (`py-3 inline-flex`), PostNavigation (`min-h-[44px]`), form submit buttons (`min-h-[44px]`) — all PASS. Contact page "Find Me Online" social links use `py-2` (~36px) — FAIL |
-| 11 | aria-label contracts match UI-SPEC | VERIFIED | `aria-label="Toggle dark mode"` on both desktop and mobile theme toggle; `aria-label="Open navigation menu"` on hamburger — both confirmed in built output |
-| 12 | Lighthouse ≥90 all four categories | NEEDS HUMAN | All code preconditions satisfied; actual scores require a manual Lighthouse run |
-| 13 | Layout correct at 375px, 768px, 1280px | NEEDS HUMAN | Responsive CSS structure (max-w-4xl, px-4, md: prefixes) confirmed in source; visual correctness requires browser testing |
-| 14 | SEO-09: Font loading policy | PARTIAL | No render-blocking fonts (better than minimum); but REQUIREMENTS.md wording specifies "Google Fonts with display=swap + preconnect" — not matched literally (see requirements coverage gap) |
+| 6 | Article JSON-LD on blog post pages (unescaped quotes) | VERIFIED | Both post pages have `<script type="application/ld+json">` with `"@type":"BlogPosting"` — unescaped quotes confirmed |
+| 7 | No raw img tags in built HTML | VERIFIED | `grep -r '<img ' dist/` returns 0 matches |
+| 8 | No render-blocking fonts | VERIFIED | No `fonts.googleapis.com` in source; system font stack only; zero `@font-face` in global.css |
+| 9 | og:image uses absolute URL for social crawlers | VERIFIED | `new URL(image, Astro.site).toString()` in BaseHead.astro line 10; built output confirms absolute URL on all pages — gap closed |
+| 10 | All tap targets ≥44x44px | VERIFIED | Nav desktop (`min-h-[44px]`), mobile (`py-3`), icon buttons (`p-3`), footer (`py-3 inline-flex`), PostNavigation (`min-h-[44px]`), form buttons (`min-h-[44px]`), contact social links (`py-3`) — all confirmed in built HTML — gap closed |
+| 11 | aria-label contracts match UI-SPEC | VERIFIED | `aria-label="Toggle dark mode"` and `aria-label="Open navigation menu"` confirmed in built HTML; no `mobile-theme-toggle` redundancy — regression confirmed absent |
+| 12 | Lighthouse ≥90 all four categories | NEEDS HUMAN | All code preconditions satisfied; actual scores require manual Lighthouse run in Chrome DevTools |
+| 13 | Layout correct at 375px, 768px, 1280px | NEEDS HUMAN | Responsive CSS confirmed (max-w-4xl, px-4, md:/lg: prefixes); visual correctness requires browser testing |
+| 14 | SEO-09: Font loading policy matches requirement text | VERIFIED | REQUIREMENTS.md SEO-09 updated to match system font implementation — requirement text and code now agree — gap closed |
 
-**Score:** 10/14 truths fully verified (2 need human, 2 have gaps)
+**Score:** 12/14 truths fully verified (2 need human testing, 0 gaps)
 
 ---
 
@@ -79,20 +77,20 @@ human_verification:
 
 | Artifact | Expected | Status | Details |
 |----------|----------|--------|---------|
-| `src/components/BaseHead.astro` | OG/canonical/RSS meta head fragment | VERIFIED | 32-line file; title, description, canonical, OG, Twitter Card, RSS autodiscovery — all present |
-| `src/components/ArticleJsonLd.astro` | BlogPosting JSON-LD using set:html | VERIFIED | Uses `set:html={JSON.stringify(schema)}` — correct; BlogPosting schema with all required fields |
-| `src/pages/rss.xml.js` | RSS endpoint with draft filter | VERIFIED | `data.draft !== true` filter present; `context.site` used; sorted by date |
+| `src/components/BaseHead.astro` | OG/canonical/RSS meta with absolute image URL | VERIFIED | `imageURL = new URL(image, Astro.site).toString()` at line 10; `og:image` and `twitter:image` both use `{imageURL}` |
+| `src/components/ArticleJsonLd.astro` | BlogPosting JSON-LD using set:html | VERIFIED | `set:html={JSON.stringify(schema)}` confirmed; unescaped JSON in built output |
+| `src/pages/rss.xml.js` | RSS endpoint with draft filter | VERIFIED | `data.draft !== true` filter; `context.site` used; 2 published posts in feed |
 | `public/robots.txt` | Permissive crawl + sitemap URL | VERIFIED | Correct content confirmed |
-| `public/og-default.png` | OG image placeholder | VERIFIED (stub) | File exists; 1x1 white PNG placeholder as documented in SUMMARY — known stub |
-| `astro.config.mjs` | sitemap() integration, site URL | VERIFIED | `import sitemap from "@astrojs/sitemap"`, `integrations: [sitemap()]`, `site: "https://dawoodkamar.com"` |
+| `public/og-default.png` | OG image placeholder | VERIFIED (stub) | 1x1 white PNG placeholder — known pre-launch stub |
+| `astro.config.mjs` | sitemap() integration, site URL | VERIFIED | `integrations: [sitemap()]`, `site: "https://dawoodkamar.com"` |
 | `src/layouts/BaseLayout.astro` | BaseHead wired, named head slot | VERIFIED | `<BaseHead {title} {description} />` and `<slot name="head" />` present in `<head>` |
-| `src/pages/blog/[id].astro` | ArticleJsonLd wired via slot="head" | VERIFIED | `<ArticleJsonLd slot="head" .../>` with all required props; SITE_URL used for canonical |
-| `src/components/Navigation.astro` | 44px tap targets, correct aria-labels | VERIFIED | Desktop links `min-h-[44px] flex items-center`; mobile links `py-3`; theme toggle `p-3`; hamburger `p-3` with `aria-label="Open navigation menu"` |
-| `src/components/Footer.astro` | 44px tap targets on nav/social links | VERIFIED | All footer links use `py-3 inline-flex items-center` |
+| `src/pages/blog/[id].astro` | ArticleJsonLd wired via slot="head" | VERIFIED | `<ArticleJsonLd slot="head" .../>` confirmed; JSON-LD in `<head>` of built pages |
+| `src/components/Navigation.astro` | 44px tap targets, correct aria-labels, no mobile duplicate toggle | VERIFIED | `min-h-[44px]` desktop links, `py-3` mobile links, `p-3` buttons, `aria-label="Open navigation menu"`, no `mobile-theme-toggle` in output |
+| `src/components/Footer.astro` | 44px tap targets on nav/social links | VERIFIED | `py-3 inline-flex items-center` on footer links |
 | `src/components/PostNavigation.astro` | 44px tap targets on prev/next | VERIFIED | Both anchors use `min-h-[44px] justify-center` |
-| `src/components/NewsletterSignup.astro` | 44px submit button | VERIFIED | Submit button has `min-h-[44px]` on both compact and full variants |
-| `src/components/ContactForm.astro` | 44px submit button | VERIFIED | Submit button has `min-h-[44px]` |
-| `src/pages/contact.astro` | 44px social links in "Find Me Online" | FAILED | Social links use `py-2` (~36px total height) — not 44px minimum |
+| `src/components/NewsletterSignup.astro` | 44px submit button | VERIFIED | `min-h-[44px]` on submit button |
+| `src/components/ContactForm.astro` | 44px submit button | VERIFIED | `min-h-[44px]` on submit button |
+| `src/pages/contact.astro` | 44px social links in "Find Me Online" | VERIFIED | Both anchors use `py-3` — confirmed in source (lines 17-18) and in built `dist/contact/index.html` — gap closed |
 
 ---
 
@@ -105,7 +103,7 @@ human_verification:
 | `blog/[id].astro` | `ArticleJsonLd.astro` | `slot="head"` | WIRED | JSON-LD appears in `<head>` of built blog post pages |
 | `astro.config.mjs` | sitemap | `integrations: [sitemap()]` | WIRED | `dist/sitemap-index.xml` and `dist/sitemap-0.xml` generated |
 | `rss.xml.js` | blog collection | `getCollection("blog", draft filter)` | WIRED | RSS contains 2 published posts; draft excluded |
-| `BaseHead.astro` | `og:image` | `image` prop default | PARTIAL | Tag emitted but value is relative `/og-default.png`; social crawlers need absolute URL |
+| `BaseHead.astro` | `og:image` | `new URL(image, Astro.site).toString()` | WIRED | `imageURL` resolves to `https://dawoodkamar.com/og-default.png`; confirmed in built HTML on all pages |
 
 ---
 
@@ -113,10 +111,10 @@ human_verification:
 
 | Artifact | Data Variable | Source | Produces Real Data | Status |
 |----------|---------------|--------|--------------------|--------|
-| `BaseHead.astro` | `canonicalURL` | `new URL(Astro.url.pathname, Astro.site)` — `Astro.site` = `https://dawoodkamar.com` | Yes — full absolute URL | FLOWING |
+| `BaseHead.astro` | `canonicalURL` | `new URL(Astro.url.pathname, Astro.site)` | Yes — absolute URL per page | FLOWING |
+| `BaseHead.astro` | `imageURL` | `new URL(image, Astro.site).toString()` with default `'/og-default.png'` | Yes — resolves to absolute URL | FLOWING |
 | `rss.xml.js` | `posts` | `getCollection("blog", draft filter)` | Yes — 2 live posts | FLOWING |
-| `ArticleJsonLd.astro` | `schema` | Props from `[id].astro` → post frontmatter | Yes — per-post data | FLOWING |
-| `BaseHead.astro` | `image` | Default `'/og-default.png'` (relative) | Static placeholder — no URL resolution | STATIC (gap) |
+| `ArticleJsonLd.astro` | `schema` | Props from `[id].astro` via post frontmatter | Yes — per-post data | FLOWING |
 
 ---
 
@@ -124,19 +122,20 @@ human_verification:
 
 | Behavior | Command | Result | Status |
 |----------|---------|--------|--------|
-| OG title in built homepage | `grep 'og:title' dist/index.html` | `content="Dawood Kamar"` found | PASS |
-| Canonical URL in built homepage | `grep 'canonical' dist/index.html` | `href="https://dawoodkamar.com/"` — absolute URL | PASS |
+| og:image absolute URL on homepage | `grep 'og:image' dist/index.html` | `content="https://dawoodkamar.com/og-default.png"` | PASS |
+| twitter:image absolute URL on homepage | `grep 'twitter:image' dist/index.html` | `content="https://dawoodkamar.com/og-default.png"` | PASS |
+| og:image absolute URL on blog post | `grep 'og:image' dist/blog/ai-noise/index.html` | `content="https://dawoodkamar.com/og-default.png"` | PASS |
+| og:image absolute URL on contact page | `grep 'og:image' dist/contact/index.html` | `content="https://dawoodkamar.com/og-default.png"` | PASS |
+| Contact social links use py-3 | Python extract anchor tags from dist/contact/index.html | Both YouTube and LinkedIn anchors have `py-3` class | PASS |
+| mobile-theme-toggle absent | `grep 'mobile-theme-toggle' dist/index.html` | No match (exit 1) | PASS |
+| Canonical URL on homepage | `grep 'canonical' dist/index.html` | `href="https://dawoodkamar.com/"` | PASS |
 | JSON-LD on blog post (unescaped) | `grep '"@type":"BlogPosting"' dist/blog/ai-noise/index.html` | Present with unescaped quotes | PASS |
-| Sitemap generated | `cat dist/sitemap-index.xml` | Valid XML with sitemap-0.xml reference | PASS |
-| RSS feed has items | `grep -c '<item>' dist/rss.xml` | 1 (RSS wraps all in `<channel>`, 2 items present) | PASS |
+| Sitemap generated | `ls dist/sitemap-index.xml dist/rss.xml` | Both files exist | PASS |
 | Draft excluded from sitemap | `grep 'switzerland' dist/sitemap-0.xml` | No match | PASS |
 | Draft excluded from RSS | `grep 'switzerland' dist/rss.xml` | No match | PASS |
 | No raw img tags | `grep -r '<img ' dist/ --include="*.html" \| wc -l` | 0 | PASS |
-| No Google Fonts | `grep 'fonts.googleapis.com' src/styles/global.css src/components/BaseHead.astro` | No match | PASS |
-| aria-label on hamburger | `grep 'aria-label="Open navigation menu"' dist/index.html` | Found | PASS |
-| aria-label on theme toggle | `grep 'aria-label="Toggle dark mode"' dist/index.html` | Found | PASS |
-| og:image URL is absolute | `grep 'og:image' dist/index.html` | `content="/og-default.png"` — RELATIVE | FAIL |
-| Contact social links tap target | `grep 'py-2' src/pages/contact.astro` in social links | `py-2` found on YouTube/LinkedIn | FAIL |
+| aria-label on hamburger | Present in dist/index.html | `aria-label="Open navigation menu"` found | PASS |
+| aria-label on theme toggle | Present in dist/index.html | `aria-label="Toggle dark mode"` found | PASS |
 
 ---
 
@@ -144,22 +143,22 @@ human_verification:
 
 | Requirement | Source Plan | Description | Status | Evidence |
 |-------------|------------|-------------|--------|----------|
-| SEO-01 | 04-01 | BaseHead with title, description, OG tags, canonical, RSS autodiscovery | SATISFIED | BaseHead.astro confirmed; all tags in built output |
+| SEO-01 | 04-01 | BaseHead with title, description, OG tags, canonical, RSS autodiscovery | SATISFIED | BaseHead.astro confirmed; all tags in built output; og:image now uses absolute URL |
 | SEO-02 | 04-01 | Canonical URLs via `new URL(Astro.url.pathname, Astro.site)` | SATISFIED | Canonical is absolute `https://dawoodkamar.com/...` in all built pages |
 | SEO-03 | 04-01 | Article JSON-LD using set:html to avoid HTML-escaping | SATISFIED | `set:html={JSON.stringify(schema)}` in ArticleJsonLd.astro; unescaped quotes in built output |
 | SEO-04 | 04-01 | @astrojs/sitemap configured; drafts excluded | SATISFIED | sitemap-0.xml has 6 URLs; switzerland-ambition absent |
 | SEO-05 | 04-01 | RSS at /rss.xml via @astrojs/rss; explicit draft filter | SATISFIED | rss.xml.js with `data.draft !== true`; 2 published posts in feed |
-| SEO-06 | 04-01 | public/robots.txt with sitemap reference | SATISFIED | robots.txt confirmed with correct content |
+| SEO-06 | 04-01 | public/robots.txt with sitemap reference | SATISFIED | robots.txt: correct content confirmed |
 | SEO-07 | 04-02 | All images use `<Image />` from astro:assets; no raw img tags | SATISFIED | Zero `<img>` tags in built HTML confirmed |
-| SEO-08 | 04-02 | Hero/above-fold images use loading="eager" and fetchpriority="high" | SATISFIED (no-op) | Hero is text-only; no images to apply attributes to; confirmed by audit |
-| SEO-09 | 04-02 | Google Fonts with display=swap + preconnect, or Astro Fonts API | BLOCKED (interpretation gap) | REQUIREMENTS.md wording specifies a web font approach; implementation chose system fonts instead. System fonts mean zero render-blocking risk (better outcome) but does not match requirement text literally. Needs owner decision to either update REQUIREMENTS.md or add a font. |
-| SEO-10 | 04-02 | Lighthouse ≥90 on all four categories | NEEDS HUMAN | Code preconditions met (aria-labels, tap targets, no render-blocking fonts, no raw img); actual scores require manual Lighthouse run in Chrome DevTools |
+| SEO-08 | 04-02 | Hero/above-fold images use loading="eager" and fetchpriority="high" | SATISFIED (no-op) | Hero is text-only; no images to apply attributes to |
+| SEO-09 | 04-03 | No render-blocking fonts — system font stack used | SATISFIED | REQUIREMENTS.md updated to match implementation; no font-face, no Google Fonts in source |
+| SEO-10 | 04-02 | Lighthouse ≥90 on all four categories | NEEDS HUMAN | Code preconditions met; actual scores require manual Lighthouse run |
 | RESP-01 | 04-02 | Fully usable at 375px, 768px, 1280px | NEEDS HUMAN | Responsive CSS structure confirmed (max-w-4xl, px-4, md:/lg: prefixes); visual correctness requires browser |
 | RESP-02 | 04-02 | No text-xs/text-sm on body-level content | SATISFIED | text-xs and text-sm only on category badges, timestamps, metadata — not body copy |
-| RESP-03 | 04-02 | All interactive elements ≥44×44px tap target | BLOCKED | Nav, Footer, PostNavigation, form buttons all pass; contact.astro social links ("Find Me Online") use py-2 (~36px) |
-| RESP-04 | 04-02 | Responsive images (srcset from Image component) | SATISFIED (no-op) | No images in source beyond og-default.png placeholder; no raw img tags; text-only posts |
+| RESP-03 | 04-03 | All interactive elements ≥44x44px tap target | SATISFIED | All elements confirmed: nav, footer, form buttons, contact social links all use py-3 or min-h-[44px] |
+| RESP-04 | 04-02 | Responsive images (srcset from Image component) | SATISFIED (no-op) | No images in source beyond og-default.png; zero raw img tags |
 
-**Orphaned requirements check:** All 14 requirements (SEO-01 through SEO-10, RESP-01 through RESP-04) are covered by plans 04-01 and 04-02. No orphaned requirements.
+**Orphaned requirements:** None. All 14 requirements (SEO-01 through SEO-10, RESP-01 through RESP-04) are accounted for across plans 04-01, 04-02, and 04-03.
 
 ---
 
@@ -167,10 +166,10 @@ human_verification:
 
 | File | Line | Pattern | Severity | Impact |
 |------|------|---------|----------|--------|
-| `src/components/BaseHead.astro` | 5, 8 | Comment says "absolute URL" but default value is relative `/og-default.png` | Blocker | og:image is relative — Facebook, Twitter/X, LinkedIn crawlers will not resolve it; social previews broken until fixed |
-| `src/components/NewsletterSignup.astro` | 2 | `// TODO: Confirm Buttondown username is "dawoodkamar"` | Warning | Unresolved TODO comment; username appears correct but is unconfirmed by owner |
-| `public/og-default.png` | — | 1x1 white PNG placeholder | Warning | Known stub documented in SUMMARY; social shares will show blank image until replaced with real 1200x630px branded image |
-| `src/pages/contact.astro` | 17-18 | Social links use `py-2` (36px effective tap height) | Blocker | RESP-03 violation — contact page "Find Me Online" links do not meet 44px minimum |
+| `src/components/NewsletterSignup.astro` | 2 | `// TODO: Confirm Buttondown username is "dawoodkamar"` | Warning | Unresolved TODO; username appears correct but unconfirmed by owner. Does not block functionality. |
+| `public/og-default.png` | — | 1x1 white PNG placeholder | Warning | Known pre-launch stub documented in SUMMARY. Social shares will show blank image until replaced with a real 1200x630px branded image. |
+
+No blocker anti-patterns remain.
 
 ---
 
@@ -180,7 +179,7 @@ human_verification:
 
 **Test:** Run `npm run build && npx serve dist`, open Chrome DevTools, run Lighthouse on homepage (`/`) and one blog post page (e.g., `/blog/ai-noise/`). Enable all four categories: Performance, Accessibility, Best Practices, SEO.
 **Expected:** All four categories score ≥90 on both pages.
-**Why human:** Lighthouse requires a live HTTP server and headless Chrome; cannot run programmatically in this context. All code preconditions are met (correct aria-labels, tap targets ≥44px on most elements, no raw img, no render-blocking fonts, JSON-LD present, canonical tags present).
+**Why human:** Lighthouse requires a live HTTP server and headless Chrome. All code preconditions are met: correct aria-labels, tap targets ≥44px on all elements (including contact social links), no raw img tags, no render-blocking fonts, JSON-LD present, canonical and og:image tags absolute.
 
 **2. Responsive Layout Verification (RESP-01)**
 
@@ -190,23 +189,23 @@ human_verification:
 
 **3. Social Share Preview (og:image)**
 
-**Test:** After fixing the og:image to absolute URL (gap 1), validate using Facebook Sharing Debugger (`https://developers.facebook.com/tools/debug/`), Twitter Card Validator, and LinkedIn Post Inspector with the production URL.
-**Expected:** Each platform shows a preview card with the og:image thumbnail.
-**Why human:** Social crawlers require the URL to be accessible from the internet (needs to be deployed). The current 1x1 placeholder will show as a blank image even with the correct absolute URL — this is acceptable as a known stub pre-launch.
+**Test:** After deploying to production, validate using Facebook Sharing Debugger (`https://developers.facebook.com/tools/debug/`), Twitter Card Validator, and LinkedIn Post Inspector with the production URL `https://dawoodkamar.com`.
+**Expected:** Each platform shows a preview card. Note: the current og-default.png is a 1x1 white placeholder — the URL is now correct and absolute, but the image content will appear blank until replaced with a real 1200x630px branded image. This is an acceptable pre-launch state.
+**Why human:** Social crawlers require the URL to be accessible from the internet (deployed). The URL correctness (absolute) is now programmatically verified; the visual quality of the placeholder is a known accepted stub.
 
 ---
 
 ### Gaps Summary
 
-Three issues block full goal achievement:
+No programmatic gaps remain. All three gaps from the initial verification are closed:
 
-**Gap 1 — og:image relative URL (SEO-01 partially blocked):** `BaseHead.astro` emits `og:image` and `twitter:image` with the value `/og-default.png` — a relative path. All major social crawlers require an absolute URL for the OG image to resolve. Fix: in `BaseHead.astro`, resolve the image prop to absolute using `new URL(image, Astro.site).toString()` when the value starts with `/`. This is a one-line fix.
+- Gap 1 (og:image relative URL) — closed by `new URL(image, Astro.site).toString()` in BaseHead.astro.
+- Gap 2 (contact social link tap targets) — closed by `py-3` on both anchors in contact.astro.
+- Gap 3 (SEO-09 requirement text mismatch) — closed by updating REQUIREMENTS.md SEO-09 to match system font implementation.
 
-**Gap 2 — Contact page social links tap target (RESP-03 partially blocked):** The YouTube and LinkedIn anchors in `src/pages/contact.astro` (lines 17-18) use `py-2` padding, giving approximately 36px effective height — below the 44px WCAG 2.5.5 minimum. The 04-02 plan did not include this file in its scope. Fix: change `py-2` to `py-3` on both anchors in contact.astro.
-
-**Gap 3 — SEO-09 requirement interpretation (requires owner decision):** `REQUIREMENTS.md` SEO-09 specifies "Google Fonts loaded with display=swap + preconnect, or via Astro Fonts API." The implementation intentionally uses system fonts — zero render-blocking risk, which is the better technical outcome. However, the requirement text is not literally met. This requires a decision: either update `REQUIREMENTS.md` to read "No render-blocking fonts — system font stack or web fonts with display=swap" to match intent, or add a web font. No code change is needed if the owner accepts system fonts.
+The two remaining NEEDS HUMAN items (SEO-10 Lighthouse scores, RESP-01 responsive visual layout) are unchanged from initial verification. They are not regressions — they require a browser/Lighthouse runtime that cannot be replicated programmatically.
 
 ---
 
-*Verified: 2026-04-02T09:00:00Z*
+*Verified: 2026-04-02T12:00:00Z*
 *Verifier: Claude (gsd-verifier)*
