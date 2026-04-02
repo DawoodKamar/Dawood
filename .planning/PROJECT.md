@@ -31,13 +31,13 @@ A fast, readable blog that makes it effortless to publish and share writing — 
 - ✓ Persistent footer with copyright, nav links, and social links (YouTube, LinkedIn) — Validated in Phase 2: Layout & Navigation
 - ✓ View transitions between all pages using Astro's View Transitions API — Validated in Phase 2: Layout & Navigation
 - ✓ Homepage: hero, positioning text, content pillars (4), featured posts (3 most recent), newsletter signup — Validated in Phase 2: Layout & Navigation
-- [ ] Three-page structure: Homepage (`/`), Blog (`/blog`), Get in Touch (`/contact`)
-- [ ] Blog listing page with post cards (title, excerpt, date, reading time, category)
-- [ ] Individual blog post pages with full markdown rendering
-- [ ] Newsletter signup component (reusable) in ≥3 locations: homepage, post footer, site footer
-- [ ] Previous/Next post navigation on individual post pages
-- [ ] Contact page with Netlify Forms (Name, Email, Message) + form validation + success/error states
-- [ ] Newsletter integration via Buttondown or Mailchimp embed/API
+- ✓ Three-page structure: Homepage (`/`), Blog (`/blog`), Contact (`/contact`) — Validated in Phase 3: Pages & Features
+- ✓ Blog listing page with post cards (title, excerpt, date, reading time, category) — Validated in Phase 3: Pages & Features
+- ✓ Individual blog post pages with full markdown rendering — Validated in Phase 3: Pages & Features
+- ✓ Newsletter signup component (reusable) in ≥3 locations: homepage section, post footer, site footer — Validated in Phase 3: Pages & Features
+- ✓ Previous/Next post navigation on individual post pages — Validated in Phase 3: Pages & Features
+- ✓ Contact page with Netlify Forms (Name, Email, Message) + client-side validation + success page — Validated in Phase 3: Pages & Features
+- ✓ Newsletter integration via Buttondown embed (dawoodkamar) — Validated in Phase 3: Pages & Features
 - [ ] Fully responsive (mobile-first, min 16px body text)
 - [ ] Lighthouse 90+ across all categories
 - [ ] Semantic HTML + meta tags (title, description, og:*) per page
@@ -80,8 +80,8 @@ Netlify is already configured and deploying from this repo. The new build comman
 | Astro over Next.js | Content site, not app — Astro ships zero JS by default, native view transitions, first-class markdown | ✓ Confirmed Phase 1 |
 | Tailwind v4 via `@tailwindcss/vite` | Replaces deprecated `@astrojs/tailwind`; no `tailwind.config.js` needed | ✓ Confirmed Phase 1 |
 | `src/content.config.ts` (not `src/content/config.ts`) | Astro 5 path change — wrong path silently fails | ✓ Confirmed Phase 1 |
-| Netlify Forms for contact | Zero backend, already on Netlify, free tier | — Pending Phase 4 |
-| Buttondown/Mailchimp for newsletter | Simple embed, free at low volume, no server needed | — Pending Phase 3 |
+| Netlify Forms for contact | Zero backend, already on Netlify, free tier | ✓ Confirmed Phase 3 |
+| Buttondown for newsletter | Embed form POSTs to buttondown.com/api/emails/embed-subscribe/dawoodkamar | ✓ Confirmed Phase 3 |
 | File-based blog (no CMS) | Low maintenance, version-controlled, no external dependency | ✓ Confirmed Phase 1 |
 
 ## Evolution
@@ -102,4 +102,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 after Phase 2: Layout & Navigation complete*
+*Last updated: 2026-04-02 after Phase 3: Pages & Features complete*
