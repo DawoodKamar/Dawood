@@ -8,7 +8,7 @@ Replace the existing vanilla HTML/CSS/JS portfolio with a full Astro 5.17 + Tail
 
 - [x] **Phase 1: Foundation** - Astro project, Tailwind v4, content collections, sample posts (completed 2026-04-01)
 - [x] **Phase 2: Layout & Navigation** - BaseLayout, navigation, footer, dark mode, homepage sections (completed 2026-04-01)
-- [ ] **Phase 3: Pages & Features** - Blog listing/post pages, contact form, newsletter component
+- [x] **Phase 3: Pages & Features** - Blog listing/post pages, contact form, newsletter component (completed 2026-04-02)
 - [ ] **Phase 4: SEO & Polish** - Meta tags, structured data, sitemap, RSS, Lighthouse 90+
 
 ## Phase Details
@@ -61,7 +61,7 @@ Plans:
 
 Plans:
 - [x] 03-01: Build blog listing page (`/blog`), individual post page (`/blog/[slug]`) using standalone `render()` from `astro:content`, `PostNavigation.astro`, and `NewsletterSignup.astro` component
-- [ ] 03-02: Build `/contact` page with `ContactForm.astro` (`data-netlify="true"`, `data-astro-reload`, honeypot), `src/pages/success.astro`, client-side validation, social links, and integrate `NewsletterSignup.astro` into site footer
+- [x] 03-02: Build `/contact` page with `ContactForm.astro` (`data-netlify="true"`, `data-astro-reload`, honeypot), `src/pages/success.astro`, client-side validation, social links, and integrate `NewsletterSignup.astro` into site footer
 
 ### Phase 4: SEO & Polish
 **Goal**: Every page has correct metadata and canonical URLs; the site scores Lighthouse 90+ on all categories; sitemap, RSS, and robots.txt are live.
@@ -89,5 +89,5 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-04-01 |
 | 2. Layout & Navigation | 2/2 | Complete   | 2026-04-01 |
-| 3. Pages & Features | 1/2 | In Progress|  |
+| 3. Pages & Features | 2/2 | Complete   | 2026-04-02 |
 | 4. SEO & Polish | 0/2 | Not started | - |
