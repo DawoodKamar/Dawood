@@ -77,17 +77,17 @@
 - [x] **SEO-04**: `@astrojs/sitemap` configured — sitemap auto-excludes draft posts via filter callback
 - [x] **SEO-05**: RSS feed at `/rss.xml` via `@astrojs/rss` — excludes draft posts
 - [x] **SEO-06**: `public/robots.txt` with sitemap URL reference
-- [ ] **SEO-07**: All images use `<Image />` from `astro:assets` with explicit width/height to prevent CLS
-- [ ] **SEO-08**: Hero/above-fold images use `loading="eager"` and `fetchpriority="high"`
-- [ ] **SEO-09**: Google Fonts loaded with `display=swap` + preconnect, or via Astro Fonts API
-- [ ] **SEO-10**: Lighthouse score ≥90 across all categories on homepage and a blog post page
+- [x] **SEO-07**: All images use `<Image />` from `astro:assets` with explicit width/height to prevent CLS
+- [x] **SEO-08**: Hero/above-fold images use `loading="eager"` and `fetchpriority="high"`
+- [x] **SEO-09**: Google Fonts loaded with `display=swap` + preconnect, or via Astro Fonts API
+- [x] **SEO-10**: Lighthouse score ≥90 across all categories on homepage and a blog post page
 
 ### Responsive Design
 
-- [ ] **RESP-01**: Mobile-first CSS throughout; tested at mobile (375px), tablet (768px), desktop (1280px)
-- [ ] **RESP-02**: Minimum 16px body text at all breakpoints
-- [ ] **RESP-03**: Touch-friendly tap targets (min 44×44px)
-- [ ] **RESP-04**: Responsive images
+- [x] **RESP-01**: Mobile-first CSS throughout; tested at mobile (375px), tablet (768px), desktop (1280px)
+- [x] **RESP-02**: Minimum 16px body text at all breakpoints
+- [x] **RESP-03**: Touch-friendly tap targets (min 44×44px)
+- [x] **RESP-04**: Responsive images
 
 ---
 

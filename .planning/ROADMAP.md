@@ -9,7 +9,7 @@ Replace the existing vanilla HTML/CSS/JS portfolio with a full Astro 5.17 + Tail
 - [x] **Phase 1: Foundation** - Astro project, Tailwind v4, content collections, sample posts (completed 2026-04-01)
 - [x] **Phase 2: Layout & Navigation** - BaseLayout, navigation, footer, dark mode, homepage sections (completed 2026-04-01)
 - [x] **Phase 3: Pages & Features** - Blog listing/post pages, contact form, newsletter component (completed 2026-04-02)
-- [ ] **Phase 4: SEO & Polish** - Meta tags, structured data, sitemap, RSS, Lighthouse 90+
+- [x] **Phase 4: SEO & Polish** - Meta tags, structured data, sitemap, RSS, Lighthouse 90+ (completed 2026-04-02)
 
 ## Phase Details
 
@@ -79,7 +79,7 @@ Plans:
 
 Plans:
 - [x] 04-01: Build `BaseHead.astro` (title, description, OG tags, canonical via `Astro.site` + `SITE_URL` fallback), `ArticleJsonLd.astro` using `set:html`, configure `@astrojs/sitemap` with draft filter, `@astrojs/rss` feed excluding drafts, `public/robots.txt` referencing sitemap
-- [ ] 04-02: Audit and fix all Lighthouse regressions — replace any raw `<img>` with `<Image />` from `astro:assets`, set `loading="eager"` on hero images, configure font loading with `display=swap` + preconnect, verify responsive layout at all three breakpoints
+- [x] 04-02: Audit and fix all Lighthouse regressions — replace any raw `<img>` with `<Image />` from `astro:assets`, set `loading="eager"` on hero images, configure font loading with `display=swap` + preconnect, verify responsive layout at all three breakpoints
 
 ## Progress
 
@@ -90,4 +90,4 @@ Plans:
 | 1. Foundation | 2/2 | Complete    | 2026-04-01 |
 | 2. Layout & Navigation | 2/2 | Complete   | 2026-04-01 |
 | 3. Pages & Features | 2/2 | Complete   | 2026-04-02 |
-| 4. SEO & Polish | 1/2 | In Progress|  |
+| 4. SEO & Polish | 2/2 | Complete   | 2026-04-02 |
