@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 import PostNavigation from "../../components/PostNavigation.astro";
-import NewsletterSignup from "../../components/NewsletterSignup.astro";
 
 export async function getStaticPaths() {
   const posts = (
@@ -48,8 +47,4 @@ const minutesRead = remarkPluginFrontmatter.minutesRead;
   </article>
 
   <PostNavigation prevPost={prevPost} nextPost={nextPost} />
-
-  <div class="mt-12">
-    <NewsletterSignup />
-  </div>
 </BaseLayout>
