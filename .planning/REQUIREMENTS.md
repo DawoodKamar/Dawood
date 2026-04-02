@@ -62,12 +62,12 @@
 
 ### Contact Page
 
-- [ ] **CONTACT-01**: `/contact` page displaying email address (mailto link)
-- [ ] **CONTACT-02**: `ContactForm.astro` using Netlify Forms: `data-netlify="true"`, honeypot field, fields: Name, Email, Message
-- [ ] **CONTACT-03**: Form `action` points to `/success` — `src/pages/success.astro` created for post-submission redirect
-- [ ] **CONTACT-04**: Form uses `data-astro-reload` attribute so view transitions don't intercept the POST
-- [ ] **CONTACT-05**: Client-side form validation (required fields, email format)
-- [ ] **CONTACT-06**: Social links (YouTube, LinkedIn) on contact page
+- [x] **CONTACT-01**: `/contact` page displaying email address (mailto link)
+- [x] **CONTACT-02**: `ContactForm.astro` using Netlify Forms: `data-netlify="true"`, honeypot field, fields: Name, Email, Message
+- [x] **CONTACT-03**: Form `action` points to `/success` — `src/pages/success.astro` created for post-submission redirect
+- [x] **CONTACT-04**: Form uses `data-astro-reload` attribute so view transitions don't intercept the POST
+- [x] **CONTACT-05**: Client-side form validation (required fields, email format)
+- [x] **CONTACT-06**: Social links (YouTube, LinkedIn) on contact page
 
 ### SEO & Performance
 
