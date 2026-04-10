@@ -19,22 +19,52 @@ const postsWithReadingTime = await Promise.all(
 );
 ---
 
-<BaseLayout title="Dawood Kamar" description="AI, work, and modern life.">
+<BaseLayout title="Dawood Kamar" description="Work, AI, and modern life." transparentNav>
 
-  <!-- Section 1: Hero -->
-  <section class="py-16 text-center md:py-24">
-    <h1 class="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-      Dawood Kamar
-    </h1>
-    <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400 md:text-xl">
-      AI, work, and modern life.
-    </p>
-    <a
-      href="/blog/"
-      class="mt-8 inline-block rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+  <!-- Section 1: Hero (full-bleed, behind nav) -->
+  <section slot="before-main" class="relative flex min-h-screen bg-[#1c3628] text-white overflow-hidden">
+    <!-- Background video -->
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
     >
-      Read the Blog
-    </a>
+      <source src="/bgvd-compressed.mp4" type="video/mp4" />
+    </video>
+    <!-- Dark overlay for text readability -->
+    <div class="absolute inset-0 z-10 bg-black/15"></div>
+
+    <div class="absolute bottom-12 left-6 z-20 md:bottom-16 md:left-10">
+      <p class="hero-tagline mb-4 max-w-xs text-lg font-light tracking-wide text-white sm:max-w-sm sm:text-xl md:ml-2">
+        Work, AI, and modern life.
+      </p>
+      <h1 class="text-[clamp(4.5rem,14vw,13rem)] font-bold leading-[0.9] tracking-tighter">
+        <span class="hero-line hero-line-1 block overflow-hidden">
+          <span class="hero-line-inner block">Dawood</span>
+        </span>
+        <span class="hero-line hero-line-2 block overflow-hidden">
+          <span class="hero-line-inner block">Kamar</span>
+        </span>
+      </h1>
+    </div>
+
+    <!-- Portrait image -->
+    <img
+      src="/IMG_8957.PNG"
+      alt="Dawood Kamar"
+      class="absolute bottom-0 right-0 z-5 h-[70vh] w-auto object-contain"
+    />
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll absolute bottom-8 right-6 z-20 md:left-1/2 md:right-auto">
+      <div class="flex flex-col items-center gap-2 text-white/40">
+        <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <div class="h-12 w-px bg-linear-to-b from-white/40 to-transparent"></div>
+      </div>
+    </div>
   </section>
 
   <!-- Section 2: Positioning -->

@@ -2,3 +2,87 @@
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Syne", sans-serif;
+  --font-heading: "Audiowide", sans-serif;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* ── Hero load animations ── */
+
+/* Name lines: slide up from below with a slight overshoot */
+@keyframes hero-slide-up {
+  0% {
+    transform: translateY(110%);
+  }
+  60% {
+    transform: translateY(-3%);
+  }
+  80% {
+    transform: translateY(1%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.hero-line-inner {
+  transform: translateY(110%);
+  animation: hero-slide-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-line-1 .hero-line-inner {
+  animation-delay: 0.2s;
+}
+
+.hero-line-2 .hero-line-inner {
+  animation-delay: 0.45s;
+}
+
+/* Tagline: fade up */
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-tagline {
+  opacity: 0;
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
+}
+
+/* Scroll indicator: fade in + drift down */
+@keyframes hero-scroll-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Scroll indicator pulse (plays after entrance) */
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.hero-scroll {
+  opacity: 0;
+  animation:
+    hero-scroll-in 0.7s ease-out 1.4s forwards,
+    scroll-pulse 2.5s ease-in-out 2.4s infinite;
+}
