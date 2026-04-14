@@ -22,116 +22,89 @@ const postsWithReadingTime = await Promise.all(
 <BaseLayout title="Dawood Kamar" description="Work, AI, and modern life." transparentNav>
 
   <!-- Section 1: Hero (full-bleed, behind nav) -->
-  <section slot="before-main" class="relative flex min-h-screen bg-[#1c3628] text-white overflow-hidden">
-    <!-- Background video -->
-    <video
-      class="absolute inset-0 h-full w-full object-cover"
-      autoplay
-      loop
-      muted
-      playsinline
-      preload="auto"
-    >
-      <source src="/bgvd-compressed.mp4" type="video/mp4" />
-    </video>
-    <!-- Dark overlay for text readability -->
-    <div class="absolute inset-0 z-10 bg-black/15"></div>
+  <div slot="before-main" class="h-[200vh] z-60 relative">
+    <section class="sticky top-0 flex h-screen bg-[#1c3628] text-white overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+      <!-- Background video -->
+      <video
+        class="absolute inset-0 h-full w-full object-cover"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="auto"
+      >
+        <source src="/bgvd-compressed.mp4" type="video/mp4" />
+      </video>
+      <!-- Dark overlay for text readability -->
+      <div class="absolute inset-0 z-10 bg-black/15"></div>
 
-    <div class="absolute bottom-12 left-6 z-20 md:bottom-16 md:left-10">
-      <p class="hero-tagline mb-4 max-w-xs text-lg font-light tracking-wide text-white sm:max-w-sm sm:text-xl md:ml-2">
-        Work, AI, and modern life.
-      </p>
-      <h1 class="text-[clamp(4.5rem,14vw,13rem)] font-bold leading-[0.9] tracking-tighter">
-        <span class="hero-line hero-line-1 block overflow-hidden">
-          <span class="hero-line-inner block">Dawood</span>
-        </span>
-        <span class="hero-line hero-line-2 block overflow-hidden">
-          <span class="hero-line-inner block">Kamar</span>
-        </span>
-      </h1>
-    </div>
-
-    <!-- Portrait image -->
-    <img
-      src="/IMG_8957.PNG"
-      alt="Dawood Kamar"
-      class="absolute bottom-0 right-0 z-5 h-[70vh] w-auto object-contain"
-    />
-
-    <!-- Scroll indicator -->
-    <div class="hero-scroll absolute bottom-8 right-6 z-20 md:left-1/2 md:right-auto">
-      <div class="flex flex-col items-center gap-2 text-white/40">
-        <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-        <div class="h-12 w-px bg-linear-to-b from-white/40 to-transparent"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2: Positioning -->
-  <section class="mx-auto max-w-2xl py-12">
-    <h2 class="text-2xl font-bold md:text-3xl">What I Write About</h2>
-    <div class="mt-6 space-y-4 text-gray-600 dark:text-gray-400">
-      <p>
-        I explore how ambitious professionals can use AI as a thinking partner — not a replacement — and why focus is the real competitive advantage in a noisy world.
-      </p>
-      <p>
-        My writing draws from experience across cultures and industries: growing up in South Africa, living in Switzerland, and working at the intersection of technology and business transformation.
-      </p>
-      <p>
-        This is a space for people who want to think clearly, work intentionally, and build something that matters.
-      </p>
-    </div>
-  </section>
-
-  <!-- Section 3: Content Pillars -->
-  <section class="py-12">
-    <h2 class="text-2xl font-bold md:text-3xl">Content Pillars</h2>
-    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="rounded-lg border border-gray-200 p-6 dark:border-gray-800">
-        <h3 class="font-semibold">AI & Work</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">How to use AI as a thinking partner, cut through the hype, and stay ahead without burning out.</p>
-      </div>
-      <div class="rounded-lg border border-gray-200 p-6 dark:border-gray-800">
-        <h3 class="font-semibold">Focus & Discipline</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Building systems for deep work, managing energy, and making progress on what actually matters.</p>
-      </div>
-      <div class="rounded-lg border border-gray-200 p-6 dark:border-gray-800">
-        <h3 class="font-semibold">Culture & Place</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Lessons from living across continents — how place shapes ambition, perspective, and identity.</p>
-      </div>
-      <div class="rounded-lg border border-gray-200 p-6 dark:border-gray-800">
-        <h3 class="font-semibold">Clarity & Communication</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Writing clearly, thinking precisely, and communicating ideas that move people to action.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 4: Featured Posts -->
-  <section class="py-12">
-    <h2 class="text-2xl font-bold md:text-3xl">Latest Writing</h2>
-    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {postsWithReadingTime.map(({ post, minutesRead }) => (
-        <article class="rounded-lg border border-gray-200 p-6 dark:border-gray-800">
-          <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <time datetime={post.data.date.toISOString()}>
-              {post.data.date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
-            </time>
-            <span>·</span>
-            <span>{minutesRead}</span>
-          </div>
-          <h3 class="mt-2 text-lg font-semibold">
-            <a href={`/blog/${post.id}/`} class="hover:text-blue-600 dark:hover:text-blue-400">
-              {post.data.title}
-            </a>
-          </h3>
-          <p class="mt-2 text-gray-600 dark:text-gray-400">{post.data.description}</p>
-          <span class="mt-3 inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-            {post.data.category}
+      <div class="absolute bottom-12 left-6 z-20 md:bottom-16 md:left-10">
+        <p class="hero-tagline mb-4 max-w-xs text-lg font-light tracking-wide text-white sm:max-w-sm sm:text-xl md:ml-2">
+          Work, AI, and modern life.
+        </p>
+        <h1 class="text-[clamp(4.5rem,14vw,13rem)] font-bold leading-[0.9] tracking-tighter">
+          <span class="hero-line hero-line-1 block overflow-hidden">
+            <span class="hero-line-inner block">Dawood</span>
           </span>
-        </article>
-      ))}
-    </div>
-  </section>
+          <span class="hero-line hero-line-2 block overflow-hidden">
+            <span class="hero-line-inner block">Kamar</span>
+          </span>
+        </h1>
+      </div>
+
+      <!-- Portrait image -->
+      <img
+        src="/IMG_8957.PNG"
+        alt="Dawood Kamar"
+        class="absolute bottom-0 right-0 z-5 h-[70vh] w-auto object-contain"
+      />
+
+      <!-- Scroll indicator -->
+      <div class="hero-scroll absolute bottom-8 right-6 z-20 lg:left-1/2 lg:right-auto">
+        <div class="flex flex-col items-center gap-2 text-white/40">
+          <span class="text-[10px] uppercase tracking-[0.3em] text-white">Scroll</span>
+          <div class="h-12 w-px bg-linear-to-b from-white/40 to-transparent"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Stacking scroll: Featured Posts -->
+  {postsWithReadingTime.map(({ post, minutesRead }, i) => {
+    const colors = ["#0b1d33", "#2a1810", "#1f0a1e"];
+    const accents = ["#4a9eff", "#e8a87c", "#d4a0c0"];
+    return (
+      <div slot="before-main" class="h-[200vh] -mt-[100vh] relative" style={`z-index: ${50 - i * 10};`}>
+        <section
+          class="stack-section"
+          style={`background-color: ${colors[i]};`}
+        >
+          <div class="stack-section-inner">
+            <div class="stack-meta">
+              <span class="stack-category" style={`color: ${accents[i]};`}>{post.data.category}</span>
+              <span class="stack-divider">—</span>
+              <time datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+              </time>
+              <span class="stack-divider">·</span>
+              <span>{minutesRead}</span>
+            </div>
+            <h2 class="stack-title">
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <p class="stack-description">{post.data.description}</p>
+            <a href={`/blog/${post.id}/`} class="stack-read-link" style={`--accent: ${accents[i]};`}>
+              Read
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="stack-index" style={`color: ${accents[i]}08;`}>
+            {String(i + 1).padStart(2, "0")}
+          </div>
+        </section>
+      </div>
+    );
+  })}
 
   <!-- Section 5: Newsletter -->
   <NewsletterSignup />
