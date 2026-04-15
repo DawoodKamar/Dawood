@@ -34,13 +34,27 @@ const { title, description = "Dawood Kamar — writing on AI, focus, and work.",
       });
     </script>
   </head>
-  <body class="min-h-screen bg-white text-gray-900 dark:bg-[#1c3628] dark:text-gray-100">
-    <Navigation transparent={transparentNav} />
+  <body class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
+    {transparentNav ? (
+      <div class="h-[140vh] z-60 relative">
+        <div class="sticky top-0 h-screen overflow-hidden">
+          <Navigation transparent />
+          <slot name="hero" />
+        </div>
+      </div>
+    ) : (
+      <Navigation />
+    )}
     <slot name="before-main" />
-    <div class="relative z-70 -mt-[100vh] bg-white dark:bg-[#1c3628]">
+    <div class:list={[
+      "relative bg-white dark:bg-black",
+      transparentNav && "z-20 ",
+    ]}>
+        {Astro.slots.has('default') && ( 
       <main class="mx-auto max-w-4xl px-4 py-8">
         <slot />
       </main>
+      )}   
       <Footer />
     </div>
   </body>

@@ -13,11 +13,16 @@ const navLinks = [
 <header
   class:list={[
     transparent
-      ? "absolute top-0 left-0 w-full z-30 text-white"
+      ? "absolute top-0 left-0 w-full z-[100] text-white"
       : "border-b border-gray-200 dark:border-gray-800",
   ]}
 >
-  <nav class="flex items-center justify-end px-6 py-4">
+  <nav class:list={["flex items-center px-6 py-4", currentPath !== "/" ? "justify-between" : "justify-end"]}>
+    {currentPath !== "/" && (
+      <a href="/" class="font-heading text-xl tracking-tight">
+        Dawood
+      </a>
+    )}
     <!-- Desktop nav -->
     <ul class="hidden items-center gap-8 md:flex">
       {navLinks.map((link) => (
