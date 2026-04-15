@@ -12,7 +12,7 @@ const { prevPost, nextPost } = Astro.props;
 {(prevPost || nextPost) && (
   <nav class="mt-12 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-800">
     {prevPost ? (
-      <a href={'/blog/' + prevPost.id + '/'} class="group flex flex-col min-h-[44px] justify-center">
+      <a href={'/thoughts/' + prevPost.id + '/'} class="group flex flex-col min-h-[44px] justify-center">
         <span class="text-sm text-gray-500 dark:text-gray-400">Previous</span>
         <span class="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400">{prevPost.data.title}</span>
       </a>
@@ -20,7 +20,7 @@ const { prevPost, nextPost } = Astro.props;
       <div></div>
     )}
     {nextPost ? (
-      <a href={'/blog/' + nextPost.id + '/'} class="group flex flex-col text-right ml-auto min-h-[44px] justify-center">
+      <a href={'/thoughts/' + nextPost.id + '/'} class="group flex flex-col text-right ml-auto min-h-[44px] justify-center">
         <span class="text-sm text-gray-500 dark:text-gray-400">Next</span>
         <span class="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400">{nextPost.data.title}</span>
       </a>

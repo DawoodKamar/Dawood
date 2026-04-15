@@ -188,3 +188,113 @@
     hero-scroll-in 0.7s ease-out 1.4s forwards,
     scroll-pulse 2.5s ease-in-out 2.4s infinite;
 }
+
+/* ── Thoughts page cards ── */
+
+@keyframes card-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.thoughts-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: card-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.thoughts-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.25));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.thoughts-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+.thoughts-card-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .thoughts-card-inner {
+    padding: 2rem;
+  }
+}
+
+.thoughts-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.45);
+  flex-wrap: wrap;
+}
+
+.thoughts-card-content {
+  margin-top: auto;
+}
+
+.thoughts-card-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  transition: opacity 0.3s ease;
+}
+
+.thoughts-card:hover .thoughts-card-title {
+  opacity: 0.8;
+}
+
+.thoughts-card-description {
+  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.thoughts-card-index {
+  position: absolute;
+  right: -0.05em;
+  bottom: -0.12em;
+  font-family: var(--font-heading);
+  font-size: clamp(7rem, 16vw, 10rem);
+  font-weight: 700;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
