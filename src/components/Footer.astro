@@ -6,7 +6,7 @@ const isBlogPost = Astro.url.pathname.startsWith("/thoughts/") && Astro.url.path
 
 {!isHome && !isBlogPost && <div class="px-6 pt-8"><NewsletterSignup compact /></div>}
 <footer class:list={[
-  isHome && "relative h-[80vh] flex flex-col justify-between bg-white dark:bg-black text-gray-900 dark:text-white overflow-hidden",
+  isHome && "relative flex flex-col justify-between bg-white dark:bg-black text-gray-900 dark:text-white overflow-hidden",
   !isHome && "border-t border-gray-200 dark:border-gray-800"
 ]}>
   {isHome && (
@@ -15,7 +15,7 @@ const isBlogPost = Astro.url.pathname.startsWith("/thoughts/") && Astro.url.path
       <canvas id="footer-webgl" class="absolute inset-0 w-full h-full z-0"></canvas>
 
       <!-- Large name top-left -->
-      <div class="relative z-10 flex-1 flex items-start px-6 pt-10 md:px-10 md:pt-14">
+      <div class="relative z-10 flex-1 flex items-start px-6 py-20 md:px-10 md:py-24">
         <h2 class="text-[clamp(4.5rem,14vw,13rem)] font-bold leading-[0.9] tracking-tighter">
           <span class="block">Dawood</span>
           <span class="block">Kamar</span>
