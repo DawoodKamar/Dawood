@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
+import { categoryColors } from "../config";
 
 const allPosts = await getCollection("blog", ({ data }) =>
   import.meta.env.PROD ? data.draft !== true : true
@@ -68,17 +69,17 @@ const postsWithReadingTime = await Promise.all(
 
   <!-- Stacking scroll: Featured Posts -->
   {postsWithReadingTime.map(({ post, minutesRead }, i) => {
-    const colors = ["#0b1d33", "#2a1810", "#1f0a1e"];
-    const accents = ["#4a9eff", "#e8a87c", "#d4a0c0"];
+    const colors = categoryColors[post.data.category] || { bg: "#0b1d33", accent: "#4a9eff" };
     return (
       <div slot="before-main" class="h-[220vh] -mt-[100vh] relative" style={`z-index: ${50 - i * 10};`}>
         <section
           class="stack-section"
-          style={`background-color: ${colors[i]};`}
+          style={`background-color: ${colors.bg};`}
+          transition:name={`post-image-${post.id}`}
         >
           <div class="stack-section-inner">
             <div class="stack-meta">
-              <span class="stack-category" style={`color: ${accents[i]};`}>{post.data.category}</span>
+              <span class="stack-category" style={`color: ${colors.accent};`} transition:name={`post-category-${post.id}`}>{post.data.category}</span>
               <span class="stack-divider">—</span>
               <time datetime={post.data.date.toISOString()}>
                 {post.data.date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
@@ -86,16 +87,16 @@ const postsWithReadingTime = await Promise.all(
               <span class="stack-divider">·</span>
               <span>{minutesRead}</span>
             </div>
-            <h2 class="stack-title">
+            <h2 class="stack-title" transition:name={`post-title-${post.id}`}>
               <a href={`/thoughts/${post.id}/`}>{post.data.title}</a>
             </h2>
             <p class="stack-description">{post.data.description}</p>
-            <a href={`/thoughts/${post.id}/`} class="stack-read-link" style={`--accent: ${accents[i]};`}>
+            <a href={`/thoughts/${post.id}/`} class="stack-read-link" style={`--accent: ${colors.accent};`}>
               Read
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
-          <div class="stack-index" style={`color: ${accents[i]}08;`}>
+          <div class="stack-index" style={`color: ${colors.accent}08;`}>
             {String(i + 1).padStart(2, "0")}
           </div>
         </section>

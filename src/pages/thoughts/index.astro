@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
+import { categoryColors } from "../../config";
 
 const posts = (
   await getCollection("blog", ({ data }) =>
@@ -14,13 +15,6 @@ const postsWithMeta = await Promise.all(
     return { post, minutesRead: remarkPluginFrontmatter.minutesRead };
   })
 );
-
-const categoryColors: Record<string, { bg: string; accent: string }> = {
-  "AI & Work":               { bg: "#0b1d33", accent: "#4a9eff" },
-  "Focus & Discipline":      { bg: "#2a1810", accent: "#e8a87c" },
-  "Culture & Place":         { bg: "#1f0a1e", accent: "#d4a0c0" },
-  "Clarity & Communication": { bg: "#0d1f1a", accent: "#7ccfa0" },
-};
 ---
 
 <BaseLayout title="Thoughts — Dawood Kamar" description="Writing on AI, focus, and building a meaningful career.">
@@ -43,10 +37,11 @@ const categoryColors: Record<string, { bg: string; accent: string }> = {
               href={`/thoughts/${post.id}/`}
               class="thoughts-card lg:aspect-[4/5]"
               style={`background-color: ${colors.bg}; animation-delay: ${i * 0.12}s;`}
+              transition:name={`post-image-${post.id}`}
             >
               <div class="thoughts-card-inner">
                 <div class="thoughts-card-meta">
-                  <span class="font-semibold" style={`color: ${colors.accent};`}>
+                  <span class="font-semibold" style={`color: ${colors.accent};`} transition:name={`post-category-${post.id}`}>
                     {post.data.category}
                   </span>
                   <span class="opacity-30">—</span>
@@ -57,7 +52,7 @@ const categoryColors: Record<string, { bg: string; accent: string }> = {
                   <span>{minutesRead}</span>
                 </div>
                 <div class="thoughts-card-content">
-                  <h2 class="thoughts-card-title">{post.data.title}</h2>
+                  <h2 class="thoughts-card-title" transition:name={`post-title-${post.id}`}>{post.data.title}</h2>
                   <p class="thoughts-card-description">{post.data.description}</p>
                 </div>
               </div>
@@ -71,4 +66,12 @@ const categoryColors: Record<string, { bg: string; accent: string }> = {
     </div>
   </section>
 
+  <script>
+    document.addEventListener('astro:after-swap', () => {
+      document.querySelectorAll('.thoughts-card').forEach(card => {
+        (card as HTMLElement).style.animation = 'none';
+        (card as HTMLElement).style.opacity = '1';
+      });
+    });
+  </script>
 </BaseLayout>

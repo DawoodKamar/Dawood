@@ -298,3 +298,67 @@
   pointer-events: none;
   user-select: none;
 }
+
+/* ── Single post hero ── */
+
+.post-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 50vh;
+  color: white;
+  overflow: hidden;
+}
+
+.post-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.3));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.post-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .post-hero-inner {
+    padding: 4rem 2rem 3rem;
+  }
+}
+
+.post-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.post-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  max-width: 20ch;
+}
+
+.post-hero-description {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 50ch;
+}

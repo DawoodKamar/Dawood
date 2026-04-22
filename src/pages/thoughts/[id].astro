@@ -4,7 +4,7 @@ import ArticleJsonLd from "../../components/ArticleJsonLd.astro";
 import { getCollection, render } from "astro:content";
 import PostNavigation from "../../components/PostNavigation.astro";
 import NewsletterSignup from "../../components/NewsletterSignup.astro";
-import { SITE_URL } from "../../config";
+import { SITE_URL, categoryColors } from "../../config";
 
 export async function getStaticPaths() {
   const posts = (
@@ -26,6 +26,7 @@ export async function getStaticPaths() {
 const { post, prevPost, nextPost } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(post);
 const minutesRead = remarkPluginFrontmatter.minutesRead;
+const colors = categoryColors[post.data.category] || { bg: "#0b1d33", accent: "#4a9eff" };
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
@@ -37,21 +38,33 @@ const minutesRead = remarkPluginFrontmatter.minutesRead;
     url={`${SITE_URL}/thoughts/${post.id}/`}
     authorName="Dawood Kamar"
   />
-  <article>
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold md:text-4xl">{post.data.title}</h1>
-      <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+
+  <section
+    slot="before-main"
+    class="post-hero"
+    style={`background-color: ${colors.bg};`}
+    transition:name={`post-image-${post.id}`}
+  >
+    <div class="post-hero-inner">
+      <div class="post-hero-meta">
+        <span class="font-semibold" style={`color: ${colors.accent};`} transition:name={`post-category-${post.id}`}>
+          {post.data.category}
+        </span>
+        <span class="opacity-30">&mdash;</span>
         <time datetime={post.data.date.toISOString()}>
           {post.data.date.toLocaleDateString("en-GB", { dateStyle: "long" })}
         </time>
-        <span>·</span>
+        <span class="opacity-30">&middot;</span>
         <span>{minutesRead}</span>
       </div>
-      <span class="mt-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-        {post.data.category}
-      </span>
-    </header>
+      <h1 class="post-hero-title" transition:name={`post-title-${post.id}`}>
+        {post.data.title}
+      </h1>
+      <p class="post-hero-description">{post.data.description}</p>
+    </div>
+  </section>
 
+  <article>
     <div class="prose dark:prose-invert max-w-none">
       <Content />
     </div>
