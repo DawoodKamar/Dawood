@@ -71,31 +71,53 @@ const postsWithReadingTime = await Promise.all(
   {postsWithReadingTime.map(({ post, minutesRead }, i) => {
     const colors = categoryColors[post.data.category] || { bg: "#0b1d33", accent: "#4a9eff" };
     return (
-      <div slot="before-main" class="h-[220vh] -mt-[100vh] relative" style={`z-index: ${50 - i * 10};`}>
+      <div slot="before-main" class="h-[220vh] -mt-[100vh] relative" style={`z-index: ${50 - i * 10};`} data-stack-wrapper>
         <section
           class="stack-section"
           style={`background-color: ${colors.bg};`}
           transition:name={`post-image-${post.id}`}
         >
-          <div class="stack-section-inner">
-            <div class="stack-meta">
-              <span class="stack-category" style={`color: ${colors.accent};`} transition:name={`post-category-${post.id}`}>{post.data.category}</span>
-              <span class="stack-divider">—</span>
-              <time datetime={post.data.date.toISOString()}>
-                {post.data.date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
-              </time>
-              <span class="stack-divider">·</span>
-              <span>{minutesRead}</span>
-            </div>
-            <h2 class="stack-title" transition:name={`post-title-${post.id}`}>
-              <a href={`/thoughts/${post.id}/`}>{post.data.title}</a>
-            </h2>
-            <p class="stack-description">{post.data.description}</p>
-            <a href={`/thoughts/${post.id}/`} class="stack-read-link" style={`--accent: ${colors.accent};`}>
-              Read
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </div>
+          {(() => {
+            const words = post.data.title.split(/\s+/);
+            const wordCount = words.length;
+            const descChars = Array.from(post.data.description);
+            const descCharCount = descChars.length;
+            return (
+              <div class="stack-section-inner" style={`--word-count: ${wordCount}; --desc-char-count: ${descCharCount};`}>
+                {/* Meta: letter-spacing expands + fades in (typographic settle) */}
+                <div class="stack-meta reveal-track-in" style="--reveal-start: 0.3; --reveal-end: 0.5;">
+                  <span class="stack-category" style={`color: ${colors.accent};`} transition:name={`post-category-${post.id}`}>{post.data.category}</span>
+                  <span class="stack-divider">—</span>
+                  <time datetime={post.data.date.toISOString()}>
+                    {post.data.date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                  </time>
+                  <span class="stack-divider">·</span>
+                  <span>{minutesRead}</span>
+                </div>
+                {/* Title: word-by-word mask rise with blur + scale */}
+                <h2 class="stack-title" transition:name={`post-title-${post.id}`}>
+                  <a href={`/thoughts/${post.id}/`} aria-label={post.data.title}>
+                    {words.map((word, j) => (
+                      <span class="stack-title-word" style={`--i: ${j};`} aria-hidden="true">
+                        <span class="stack-title-word-inner">{word}</span>
+                      </span>
+                    ))}
+                  </a>
+                </h2>
+                {/* Description: per-character fade sweep (left → right) */}
+                <p class="stack-description reveal-char-sweep" aria-label={post.data.description}>
+                  {descChars.map((ch, j) => (
+                    <span class="reveal-char" style={`--i: ${j};`} aria-hidden="true">{ch === " " ? " " : ch}</span>
+                  ))}
+                </p>
+                {/* Read link: clip-path wipe + underline grow */}
+                <a href={`/thoughts/${post.id}/`} class="stack-read-link reveal-wipe" style={`--accent: ${colors.accent}; --reveal-start: 0.88; --reveal-end: 1;`}>
+                  <span class="reveal-wipe-inner">Read</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
+            );
+          })()}
           <div class="stack-index" style={`color: ${colors.accent}08;`}>
             {String(i + 1).padStart(2, "0")}
           </div>
@@ -107,3 +129,54 @@ const postsWithReadingTime = await Promise.all(
   <!-- Footer handles newsletter + closing frame on homepage -->
 
 </BaseLayout>
+
+<script>
+  // Scroll-driven reveal progress for each stack section.
+  // We publish `--reveal-p` (0 → 1) on each wrapper based on where it sits in
+  // the viewport. CSS maps that progress onto each element's animation.
+  function initStackReveals() {
+    const wrappers = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-stack-wrapper]")
+    );
+    if (!wrappers.length) return;
+
+    let ticking = false;
+    const clamp = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+    function update() {
+      ticking = false;
+      const vh = window.innerHeight;
+      for (const wrapper of wrappers) {
+        const rect = wrapper.getBoundingClientRect();
+        // Reveal over the first 100vh of the wrapper's travel through the
+        // viewport — i.e. from when its top meets the viewport top, until
+        // the wrapper has scrolled up by one viewport height.
+        const scrolled = -rect.top;
+        const progress = clamp(scrolled / vh);
+        wrapper.style.setProperty("--reveal-p", progress.toFixed(4));
+      }
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+
+    // Clean up on view-transition navigation away.
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onScroll);
+      },
+      { once: true }
+    );
+  }
+
+  document.addEventListener("astro:page-load", initStackReveals);
+</script>

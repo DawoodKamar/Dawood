@@ -141,6 +141,147 @@
   opacity: 0.7;
 }
 
+/* ── Scroll-driven reveal progress ──
+   Each [data-stack-wrapper] gets --reveal-p (0 → 1) updated from JS.
+   Child elements declare their own --reveal-start / --reveal-end window
+   within that progress range and derive a local 0→1 progress from it.
+   Overall reveal pushed later so content settles once the card is pinned. */
+
+[data-stack-wrapper] {
+  --reveal-p: 0;
+}
+
+/* ── 1. Meta: letter-spacing expand + opacity ease-in ──
+   Subtle typographic "settling" — tracking collapses from wide to normal
+   while opacity lifts. Feels like type arriving into place. */
+.reveal-track-in {
+  --reveal-start: 0.3;
+  --reveal-end: 0.5;
+  --local-p: clamp(
+    0,
+    (var(--reveal-p) - var(--reveal-start)) / (var(--reveal-end) - var(--reveal-start)),
+    1
+  );
+  opacity: var(--local-p);
+  letter-spacing: calc(0.2em + (1 - var(--local-p)) * 0.35em);
+  filter: blur(calc((1 - var(--local-p)) * 4px));
+  will-change: opacity, letter-spacing, filter;
+}
+
+/* ── 2. Title: word-by-word mask rise with blur + scale ──
+   Each word slides up from behind a mask, starting blurred/compressed and
+   settling crisp. Later trigger window (0.45 → 0.82) so the title resolves
+   after the card has fully taken over the viewport. */
+.stack-title-word {
+  display: inline-block;
+  overflow: hidden;
+  line-height: inherit;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+  margin-right: 0.22em;
+  --title-start: 0.45;
+  --title-end: 0.82;
+  --title-span: calc(var(--title-end) - var(--title-start));
+  --word-start: calc(var(--title-start) + var(--title-span) * var(--i) / var(--word-count));
+  --word-dur: calc(var(--title-span) * 1.8 / var(--word-count));
+  --word-p: clamp(0, (var(--reveal-p) - var(--word-start)) / var(--word-dur), 1);
+}
+
+.stack-title-word-inner {
+  display: inline-block;
+  will-change: transform, filter, opacity;
+  transform:
+    translateY(calc((1 - var(--word-p)) * 115%))
+    scale(calc(0.94 + var(--word-p) * 0.06));
+  transform-origin: 50% 100%;
+  filter: blur(calc((1 - var(--word-p)) * 6px));
+  opacity: calc(0.2 + var(--word-p) * 0.8);
+}
+
+/* ── 3. Description: per-character opacity sweep (left → right) ──
+   A soft wipe across the body copy — each character fades in just
+   after the one before it, creating a reading-cadence reveal. */
+.reveal-char-sweep {
+  --reveal-start: 0.72;
+  --reveal-end: 0.95;
+  --sweep-span: calc(var(--reveal-end) - var(--reveal-start));
+}
+
+.reveal-char {
+  display: inline-block;
+  white-space: pre;
+  --char-start: calc(var(--reveal-start) + var(--sweep-span) * var(--i) / var(--desc-char-count));
+  --char-dur: calc(var(--sweep-span) * 3 / var(--desc-char-count));
+  --char-p: clamp(0, (var(--reveal-p) - var(--char-start)) / var(--char-dur), 1);
+  opacity: calc(0.08 + var(--char-p) * 0.92);
+  transform: translateY(calc((1 - var(--char-p)) * 6px));
+  filter: blur(calc((1 - var(--char-p)) * 2px));
+  will-change: opacity, transform, filter;
+}
+
+/* ── 4. Read link: clip-path wipe + underline grow ──
+   Label wipes in from the left under a clip-path; underline draws from 0→100%.
+   Sits at the very end of the scroll window as the capstone. */
+.reveal-wipe {
+  --reveal-start: 0.88;
+  --reveal-end: 1;
+  --local-p: clamp(
+    0,
+    (var(--reveal-p) - var(--reveal-start)) / (var(--reveal-end) - var(--reveal-start)),
+    1
+  );
+  opacity: calc(0.2 + var(--local-p) * 0.8);
+  border-bottom-color: transparent;
+  position: relative;
+}
+
+.reveal-wipe::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent, rgba(255, 255, 255, 0.5));
+  transform: scaleX(var(--local-p));
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+.reveal-wipe-inner {
+  display: inline-block;
+  clip-path: inset(0 calc((1 - var(--local-p)) * 100%) 0 0);
+  transform: translateX(calc((1 - var(--local-p)) * -8px));
+  will-change: clip-path, transform;
+}
+
+.reveal-wipe svg {
+  opacity: var(--local-p);
+  transform: translateX(calc((1 - var(--local-p)) * -6px));
+  transition: none;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-title-word-inner,
+  .reveal-char,
+  .reveal-wipe-inner,
+  .reveal-wipe svg {
+    transform: none;
+    filter: none;
+    opacity: 1;
+    clip-path: none;
+  }
+  .reveal-track-in {
+    opacity: 1;
+    letter-spacing: 0.2em;
+    filter: none;
+  }
+  .reveal-wipe::after {
+    transform: scaleX(1);
+  }
+}
+
 .stack-description {
   font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   line-height: 1.6;
@@ -160,13 +301,15 @@
   color: white;
   text-decoration: none;
   padding-bottom: 2px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  transition: border-color 0.3s ease, gap 0.3s ease;
+  transition: gap 0.3s ease;
 }
 
 .stack-read-link:hover {
-  border-color: var(--accent);
   gap: 0.85rem;
+}
+
+.stack-read-link:hover::after {
+  background: var(--accent);
 }
 
 .stack-index {
